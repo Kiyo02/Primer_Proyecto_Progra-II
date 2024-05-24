@@ -4,6 +4,9 @@
  */
 package ucr.ac.cr.supermercadoacl.vista;
 
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Axely
@@ -16,6 +19,24 @@ public class FRM_Factura extends javax.swing.JFrame {
     public FRM_Factura() {
         initComponents();
     }
+    
+    public static void getMensaje (String mensaje){
+        
+        JOptionPane.showMessageDialog(null, mensaje);
+        
+    }
+    
+    public void setEscuchadores (ActionListener manejador){
+        
+        this.panelDatosFactura1.escuchador(manejador);
+        
+    }
+    
+    public PanelDatosFactura getPanel (){
+        
+        return panelDatosFactura1;
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,23 +47,17 @@ public class FRM_Factura extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        panelDatosFactura1 = new ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(panelDatosFactura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura panelDatosFactura1;
     // End of variables declaration//GEN-END:variables
 }

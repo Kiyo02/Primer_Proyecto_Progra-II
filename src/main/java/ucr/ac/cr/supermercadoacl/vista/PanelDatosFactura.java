@@ -25,7 +25,6 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     }
     
     public Factura getFactura (){
-        idFactura= random.nextInt(1000+1);
         return new Factura (idFactura, jtEmpleado.getText(), jtProducto.getText(),
             Double.parseDouble(jtTotal.getText()));
     }
@@ -90,6 +89,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jtProducto = new javax.swing.JTextField();
         jtEmpleado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -147,8 +147,16 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("Nota: Una vez agregado un producto en la factura  ya no se puede remover de la lista de productos.");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
-    }// </editor-fold>//GEN-END:initComponents
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
+    }// </editor-fold>//GEN-END:initComponents
+    
+    public int generarID (){
+        
+        return idFactura= random.nextInt(10000+1);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -157,6 +165,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JButton jbAgregarProd;
     private javax.swing.JButton jbCerrar;
     private javax.swing.JButton jbFacturas;
