@@ -1,0 +1,1 @@
+[{"Edad":20,"Usuario":"Caled04","Clave":"C3138","Nombre Empleado":"Caled Bustos","Puesto":"SubGerente","Cedula":1234},{"Edad":22,"Usuario":"kiyo12","Clave":"2002","Nombre Empleado":"Axel Obando","Puesto":"SubGerente","Cedula":60471},{"Edad":21,"Usuario":"LHermann","Clave":"2003","Nombre Empleado":"Laura Hermann","Puesto":"SubGerente","Cedula":98765}]
