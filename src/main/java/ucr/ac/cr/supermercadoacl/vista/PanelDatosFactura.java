@@ -8,39 +8,63 @@ import java.awt.event.ActionListener;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 import ucr.ac.cr.supermercadoacl.modelo.Factura;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
-import java.util.Random;
 
 /**
  *
  * @author Axely
  */
 public class PanelDatosFactura extends javax.swing.JPanel {
-    private int idFactura;
-    private Random random= new Random();
+    private double total;
+    private String listaProductos;
+    //--------------------------------------------------------------------------
+    
     /**
      * Creates new form PanelDatosFactura
      */
     public PanelDatosFactura() {
         initComponents();
     }
+    //--------------------------------------------------------------------------
     
-    public Factura getFactura (){
-        return new Factura (idFactura, jtEmpleado.getText(), jtProducto.getText(),
-            Double.parseDouble(jtTotal.getText()));
+    public void setTurnoEmpleado (Empleado turnoEmpleado){
+        
+        this.jtEmpleado.setText(turnoEmpleado.getNombreEmpleado());
+        
+        if(turnoEmpleado.getPuesto().equalsIgnoreCase("Gerente")){
+            
+            this.jbFacturas.setEnabled(true);
+            
+        }
+        
     }
     //--------------------------------------------------------------------------
     
-    //Rellenar los JTextField
-    public void setBodega (Producto producto){
+    public Factura getFactura (int idFactura){
+        this.jtTotal.setText("");
+        
+        return new Factura (idFactura, jtEmpleado.getText(), 
+            this.listaProductos, this.total);
+    }
+    //--------------------------------------------------------------------------
+    
+    //  
+    public void setProduto (Producto producto){
         
        this.jtProducto.setText(producto.getNombreProducto());
+       
         
     }
     //--------------------------------------------------------------------------
-    public void setEmpleado(Empleado empleado){
-        this.jtEmpleado.setText(empleado.getNombreEmpleado());
+    public void setTotal(){
+        
+        this.total+=Double.parseDouble(this.jtTotal.getText());
+        this.listaProductos+="producto "+this.jtProducto.getText()+
+            ", cantidad "+ this.jtCantidad.getText();
+        
+        this.jtTotal.setText(""+total);
+        this.jbGenerarFact.setEnabled(true);
+        
     }
-    
     //--------------------------------------------------------------------------
     
     //Limpiar los JTextField
@@ -48,7 +72,16 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         
         this.jtCantidad.setText("");
         this.jtProducto.setText("");
-        this.jtTotal.setText("");
+        
+    }
+    //--------------------------------------------------------------------------
+    
+    public void limpiarFactura (){
+        
+        this.total= 0;
+        this.listaProductos= "Lista de productos: ";
+        
+        this.limpiarCampos();
         
     }
     //--------------------------------------------------------------------------
@@ -114,9 +147,11 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
         jbGenerarFact.setText("Generar Factura");
+        jbGenerarFact.setEnabled(false);
         add(jbGenerarFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 130, -1));
 
         jbAgregarProd.setText("Agregar Producto");
+        jbAgregarProd.setEnabled(false);
         add(jbAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 130, -1));
 
         jbProductos.setText("Productos");
@@ -132,15 +167,18 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtTotal.setEnabled(false);
         add(jtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 270, -1));
 
         jtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 270, -1));
 
         jtProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtProducto.setEnabled(false);
         add(jtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 270, -1));
 
         jtEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtEmpleado.setEnabled(false);
         add(jtEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 270, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -151,12 +189,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
     }// </editor-fold>//GEN-END:initComponents
-    
-    public int generarID (){
-        
-        return idFactura= random.nextInt(10000+1);
-        
-    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

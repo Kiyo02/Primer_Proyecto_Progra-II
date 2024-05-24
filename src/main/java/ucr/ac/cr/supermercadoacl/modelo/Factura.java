@@ -31,7 +31,7 @@ public class Factura {
     //--------------------------------------------------------------------------
     
     //Metodo para la constante
-    public String getDatosEmpleados (int columna){
+    public String getDatosFactura (int columna){
         
         switch (columna){
             case 0:

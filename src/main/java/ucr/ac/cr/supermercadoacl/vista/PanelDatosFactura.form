@@ -86,6 +86,7 @@
     <Component class="javax.swing.JButton" name="jbGenerarFact">
       <Properties>
         <Property name="text" type="java.lang.String" value="Generar Factura"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -96,6 +97,7 @@
     <Component class="javax.swing.JButton" name="jbAgregarProd">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar Producto"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -145,6 +147,7 @@
     <Component class="javax.swing.JTextField" name="jtTotal">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -165,6 +168,7 @@
     <Component class="javax.swing.JTextField" name="jtProducto">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -175,6 +179,7 @@
     <Component class="javax.swing.JTextField" name="jtEmpleado">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

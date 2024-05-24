@@ -11,8 +11,6 @@ import ucr.ac.cr.supermercadoacl.modelo.ArregloProducto;
 import ucr.ac.cr.supermercadoacl.modelo.ArregloEmpleado;
 import ucr.ac.cr.supermercadoacl.modelo.ArregloFactura;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
-import ucr.ac.cr.supermercadoacl.modelo.JSON;
-import ucr.ac.cr.supermercadoacl.vista.FRM_Empleado;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Menu;
 
 /**
@@ -23,10 +21,10 @@ public class ManejadorMenu implements ActionListener{
     //Atributos y Referencias
     private FRM_Menu fRM_Menu;
     private ArregloEmpleado arregloEmpleado;
-    private ArregloProducto arregloBodega;
+    private ArregloProducto arregloProductos;
     private ArregloFactura arregloFactura;
     private ManejadorEmpleado manejadorEmpleado;
-    private ManejadorProductos manejadorBodega;
+    private ManejadorProductos manejadorProductos;
     private ManejadorFactura manejadorFactura;
     private Empleado empleado;
     //--------------------------------------------------------------------------
@@ -34,7 +32,7 @@ public class ManejadorMenu implements ActionListener{
         
         this.fRM_Menu= new FRM_Menu();
         this.arregloEmpleado= new ArregloEmpleado();
-        this.arregloBodega= new ArregloProducto();
+        this.arregloProductos= new ArregloProducto();
         this.arregloFactura= new ArregloFactura();
         
         this.fRM_Menu.setEscuchadores(this);
@@ -51,17 +49,17 @@ public class ManejadorMenu implements ActionListener{
                 
                 this.empleado=this.fRM_Menu.inicioSesion();
                 if (this.verificarLogin(empleado)!= false){
-                    String llave=this.arregloEmpleado.tipoPuesto(empleado);
+                    Empleado acceso=this.arregloEmpleado.esEmpleado(empleado);
                     
-                    if (llave.equalsIgnoreCase("Gerente")){
+                    if (acceso.getPuesto().equalsIgnoreCase("Gerente")){
                         
                         this.fRM_Menu.loginGerente(true);
                         
-                    } else if (llave.equalsIgnoreCase("SubGerente")){
+                    } else if (acceso.getPuesto().equalsIgnoreCase("SubGerente")){
                         
                         this.fRM_Menu.loginSubGerente(true);
                         
-                    } else if (llave.equalsIgnoreCase("Cajero")){
+                    } else if (acceso.getPuesto().equalsIgnoreCase("Cajero")){
                         
                         this.fRM_Menu.loginCajero(true);
                         
@@ -82,21 +80,23 @@ public class ManejadorMenu implements ActionListener{
             
             case "Empleados":
                 
-                new ManejadorEmpleado(this.arregloEmpleado);
+                this.manejadorEmpleado= new ManejadorEmpleado(this.arregloEmpleado);
                 
             break;
             //------------------------------------------------------------------
             
             case "Bodega":
                 
-                new ManejadorProductos(this.arregloBodega);
+                this.manejadorProductos= new ManejadorProductos(this.arregloProductos);
                 
             break;
             //------------------------------------------------------------------
             
             case "Caja":
+                this.empleado=this.arregloEmpleado.esEmpleado(empleado);
                 
-                //new ManejadorFactura(this.arregloFactura);
+                this.manejadorFactura= new ManejadorFactura(this.arregloFactura,
+                    this.arregloProductos, this.empleado);
                 
             break;
             //------------------------------------------------------------------
@@ -106,8 +106,8 @@ public class ManejadorMenu implements ActionListener{
                 JOptionPane.showMessageDialog(null,
                 "----------------Proyecto Elaborado Por:----------------------"
                 + "\nAxel Obando Bermudez, Carnet C25595"
-                + "\nCaled Bustos Torres, C31382"
-                + "\nLaura "
+                + "\nCaled Bustos Torres, Carnet C31382"
+                + "\nLaura Morales Hermann, Carnet C25271"
                 +"\n------------------------------------------------------------"
                 + "-----------");
                 
@@ -143,7 +143,7 @@ public class ManejadorMenu implements ActionListener{
         }
         
         
-        if (this.arregloEmpleado.tipoPuesto(empleado)==null){
+        if (this.arregloEmpleado.esEmpleado(empleado)==null){
             
             FRM_Menu.getMensaje("Usuario o clave incorrecta");
             return false;

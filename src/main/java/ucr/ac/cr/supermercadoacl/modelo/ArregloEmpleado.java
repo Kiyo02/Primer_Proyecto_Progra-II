@@ -36,26 +36,21 @@ public class ArregloEmpleado {
     //Metodo para registrar un empleado
     public String registrarEmpleado (Empleado nuevoEmpleado){
         
-        try{
-            Empleado empleadoBuscado= this.buscarEmpleado(nuevoEmpleado.getCedula());
+        Empleado empleadoBuscado= this.buscarEmpleado(nuevoEmpleado.getCedula());
 
-            if (empleadoBuscado==null){
+        if (empleadoBuscado==null){
 
-                this.listaEmpleados.add(nuevoEmpleado);
-                this.complementoJSON.archivoJSON(nuevoEmpleado, filePath);
-                return "Empleado Registrado";
+            this.listaEmpleados.add(nuevoEmpleado);
+            this.complementoJSON.archivoJSON(nuevoEmpleado, filePath);
+            return "Empleado Registrado";
 
-            } else {
+        } else {
 
-                //Este controlador especifica si hay un dato en particular ya registrado
-                String mensaje=this.datosRegistrado(nuevoEmpleado);
-                throw new NullPointerException (mensaje + " ya ha sido registrado");
-            }
-        } catch (NullPointerException e){
-            
-            return e.getMessage();
-            
+            //Este controlador especifica si hay un dato en particular ya registrado
+            String mensaje=this.datosRegistrado(nuevoEmpleado);
+            return mensaje + " ya ha sido registrado";
         }
+
     }
     //--------------------------------------------------------------------------
     
@@ -111,14 +106,14 @@ public class ArregloEmpleado {
     //--------------------Metodos Complementarios-----------------------------//
     //************************************************************************//
     //Metodo para verificar el puesto del empleado
-    public String tipoPuesto (Empleado empleado){
+    public Empleado esEmpleado (Empleado empleado){
         
         //Se verifica primero si es el admin por aparte porque este no va a estar en lista
         //Luego se verifica si es el admin, ya que solo hay un administrador
         if (llave.getUsuario().equalsIgnoreCase(empleado.getUsuario()) && 
             llave.getClave().equalsIgnoreCase(empleado.getClave())){
 
-            return "Gerente";
+            return llave;
         }
         
         //Luego se verifica si es un empleado, ya que estos si suelen estar en lista
@@ -129,14 +124,8 @@ public class ArregloEmpleado {
             if (listaEmpleados.get(i).getUsuario().equalsIgnoreCase(empleado.getUsuario()) && 
                 listaEmpleados.get(i).getClave().equalsIgnoreCase(empleado.getClave())){
                 
-                //Luego verificamos si es gerente, si no lo es entonces por default es empleado
-                if (empleado.getPuesto().equalsIgnoreCase("SubGerente")){
-                    
-                    return "SubGerente";   
-                } else {
-                    
-                    return "Empleado";   
-                }
+                return listaEmpleados.get(i);
+                
             }
         }
         return null;
