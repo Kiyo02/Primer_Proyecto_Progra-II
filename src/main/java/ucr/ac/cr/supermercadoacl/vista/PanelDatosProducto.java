@@ -23,13 +23,16 @@ public class PanelDatosProducto extends javax.swing.JPanel {
     
     public Producto getProducto (){
         
-        return new Producto(this.jtIdProduc.getText(), this.jtNProduc.getText(),
-            this.jcTipoProduc.getSelectedItem().toString(), this.jtProvedor.getText(),
-            Integer.parseInt(this.jtExistencias.getText()),
-            Integer.parseInt(this.jtCantLimite.getText()),
-            Double.parseDouble(this.jtPrecioComp.getText()),
-            Double.parseDouble(this.jtPrecioVent.getText()));
+        if (this.verificarCampos()!=true){
+            return new Producto(this.jtIdProduc.getText(), this.jtNProduc.getText(),
+                this.jcTipoProduc.getSelectedItem().toString(), this.jtProvedor.getText(),
+                Integer.parseInt(this.jtExistencias.getText()),
+                Integer.parseInt(this.jtCantLimite.getText()),
+                Double.parseDouble(this.jtPrecioComp.getText()),
+                Double.parseDouble(this.jtPrecioVent.getText()));
+        }
         
+        return null;
     }
     //--------------------------------------------------------------------------
      
@@ -249,7 +252,31 @@ public class PanelDatosProducto extends javax.swing.JPanel {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/supermarket0.1.png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 350));
     }// </editor-fold>//GEN-END:initComponents
+    public boolean verificarCampos (){
+        
+        try {
 
+            // Obtener los textos y valores necesarios
+            if (this.jtCantLimite.getText().isEmpty() || this.jtExistencias.getText().isEmpty() ||
+                this.jtIdProduc.getText().isEmpty() || this.jtNProduc.getText().isEmpty() ||
+                this.jtPrecioComp.getText().isEmpty() || this.jtPrecioVent.getText().isEmpty() ||
+                this.jtProvedor.getText().isEmpty()){
+                
+                throw new NullPointerException("Hay espacios por rellenar");
+                
+            }
+                
+        } catch (NullPointerException e) {
+
+            // Manejar la excepción de campos nulos
+            System.err.println("Error: " + e.getMessage());
+            // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
+            return true;
+
+        }
+        
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

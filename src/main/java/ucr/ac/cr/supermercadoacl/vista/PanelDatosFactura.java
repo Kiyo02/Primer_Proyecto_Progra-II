@@ -42,8 +42,12 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     public Factura getFactura (int idFactura){
         this.jtTotal.setText("");
         
-        return new Factura (idFactura, jtEmpleado.getText(), 
-            this.listaProductos, this.total);
+        if (this.verificarCampos()!=true){
+            return new Factura (idFactura, jtEmpleado.getText(), 
+                this.listaProductos, this.total);
+        }
+        
+        return null;
     }
     //--------------------------------------------------------------------------
     
@@ -189,7 +193,29 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
     }// </editor-fold>//GEN-END:initComponents
+    public boolean verificarCampos (){
+        
+        try {
 
+            // Obtener los textos y valores necesarios
+            if (this.jtCantidad.getText().isEmpty() || this.jtEmpleado.getText().isEmpty() ||
+                this.jtProducto.getText().isEmpty() || this.jtTotal.getText().isEmpty()){
+                
+                throw new NullPointerException("Hay espacios por rellenar");
+                
+            }
+                
+        } catch (NullPointerException e) {
+
+            // Manejar la excepción de campos nulos
+            System.err.println("Error: " + e.getMessage());
+            // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
+            return true;
+
+        }
+        
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
