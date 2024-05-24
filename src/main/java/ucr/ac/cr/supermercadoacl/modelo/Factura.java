@@ -10,18 +10,17 @@ package ucr.ac.cr.supermercadoacl.modelo;
  */
 public class Factura {
     //Atributos
-    private String idFactura, nombreEmpleado, nombreProducto;
-    private int cantidad;
+    private String nombreEmpleado, nombreProducto;
+    private int idFactura;
     private double total;
-    public static final String [] TITULOS_FACTURA={"ID Factura", "Nombre Empleado", "Nombre Producto", "Cantidad", "Total"};
+    public static final String [] TITULOS_FACTURA={"ID Factura", "Nombre Empleado", "Nombre Producto", "Total"};
     //--------------------------------------------------------------------------
     
     //Metodo Construtor
-    public Factura(String idFactura, String nombreEmpleado, String nombreProducto, int cantidad, double total) {
+    public Factura(int idFactura, String nombreEmpleado, String nombreProducto, double total) {
         this.idFactura = idFactura;
         this.nombreEmpleado = nombreEmpleado;
         this.nombreProducto = nombreProducto;
-        this.cantidad = cantidad;
         this.total = total;
     }
     
@@ -36,7 +35,7 @@ public class Factura {
         
         switch (columna){
             case 0:
-                return this.idFactura;
+                return String.valueOf(this.idFactura);
             
             case 1:
                 return this.nombreEmpleado;
@@ -45,9 +44,6 @@ public class Factura {
                 return this.nombreProducto;
             
             case 3:
-                return String.valueOf(this.cantidad);
-            
-            case 4:
                 return String.valueOf(this.total);
         }
         
@@ -56,7 +52,7 @@ public class Factura {
     //--------------------------------------------------------------------------
     
     //Setters
-    public void setIdFactura(String idFactura) {
+    public void setIdFactura(int idFactura) {
         this.idFactura = idFactura;
     }
 
@@ -68,16 +64,12 @@ public class Factura {
         this.nombreProducto = nombreProducto;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public void setTotal(double total) {
         this.total = total;
     }
     //--------------------------------------------------------------------------
 
-    public String getIdFactura() {
+    public int getIdFactura() {
         return idFactura;
     }
 
@@ -89,10 +81,6 @@ public class Factura {
         return nombreProducto;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
     public double getTotal() {
         return total;
     }
@@ -100,7 +88,7 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "idFactura=" + idFactura + ", nombreEmpleado=" + nombreEmpleado + ", nombreProducto=" + nombreProducto + ", cantidad=" + cantidad + ", total=" + total;
+        return "idFactura=" + idFactura + ", nombreEmpleado=" + nombreEmpleado + ", nombreProducto=" + nombreProducto + ", total=" + total;
     }
     //--------------------------------------------------------------------------
     

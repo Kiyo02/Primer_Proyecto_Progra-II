@@ -4,17 +4,66 @@
  */
 package ucr.ac.cr.supermercadoacl.vista;
 
+import java.awt.event.ActionListener;
+import ucr.ac.cr.supermercadoacl.modelo.Empleado;
+import ucr.ac.cr.supermercadoacl.modelo.Factura;
+import ucr.ac.cr.supermercadoacl.modelo.Producto;
+import java.util.Random;
+
 /**
  *
  * @author Axely
  */
 public class PanelDatosFactura extends javax.swing.JPanel {
-
+    private int idFactura;
+    private Random random= new Random();
     /**
      * Creates new form PanelDatosFactura
      */
     public PanelDatosFactura() {
         initComponents();
+    }
+    
+    public Factura getFactura (){
+        idFactura= random.nextInt(1000+1);
+        return new Factura (idFactura, jtEmpleado.getText(), jtProducto.getText(),
+            Double.parseDouble(jtTotal.getText()));
+    }
+    //--------------------------------------------------------------------------
+    
+    //Rellenar los JTextField
+    public void setBodega (Producto producto){
+        
+       this.jtProducto.setText(producto.getNombreProducto());
+        
+    }
+    //--------------------------------------------------------------------------
+    public void setEmpleado(Empleado empleado){
+        this.jtEmpleado.setText(empleado.getNombreEmpleado());
+    }
+    
+    //--------------------------------------------------------------------------
+    
+    //Limpiar los JTextField
+    public void limpiarCampos (){
+        
+        this.jtCantidad.setText("");
+        this.jtProducto.setText("");
+        this.jtTotal.setText("");
+        
+    }
+    //--------------------------------------------------------------------------
+    
+    
+    //ActionListener de los botones
+    public void escuchador (ActionListener manejador){
+        
+        this.jbAgregarProd.addActionListener(manejador);
+        this.jbCerrar.addActionListener(manejador);
+        this.jbFacturas.addActionListener(manejador);
+        this.jbGenerarFact.addActionListener(manejador);
+        this.jbProductos.addActionListener(manejador);
+        
     }
 
     /**
@@ -26,19 +75,96 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jbGenerarFact = new javax.swing.JButton();
+        jbAgregarProd = new javax.swing.JButton();
+        jbProductos = new javax.swing.JButton();
+        jbFacturas = new javax.swing.JButton();
+        jbCerrar = new javax.swing.JButton();
+        jtTotal = new javax.swing.JTextField();
+        jtCantidad = new javax.swing.JTextField();
+        jtProducto = new javax.swing.JTextField();
+        jtEmpleado = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        jLabel2.setText("Caja Registradora");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel3.setText("Total:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel4.setText("Empleado:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel5.setText("Producto:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 16)); // NOI18N
+        jLabel6.setText("Cantidad:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        jbGenerarFact.setText("Generar Factura");
+        add(jbGenerarFact, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 210, 130, -1));
+
+        jbAgregarProd.setText("Agregar Producto");
+        add(jbAgregarProd, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 130, -1));
+
+        jbProductos.setText("Productos");
+        jbProductos.setMaximumSize(new java.awt.Dimension(124, 23));
+        jbProductos.setMinimumSize(new java.awt.Dimension(124, 23));
+        jbProductos.setPreferredSize(new java.awt.Dimension(124, 23));
+        add(jbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 130, -1));
+
+        jbFacturas.setText("Facturas");
+        add(jbFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 130, -1));
+
+        jbCerrar.setText("Cerrar");
+        add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+
+        jtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        add(jtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 270, -1));
+
+        jtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 270, -1));
+
+        jtProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        add(jtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 270, -1));
+
+        jtEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        add(jtEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 270, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Nota: Una vez agregado un producto en la factura  ya no se puede remover de la lista de productos.");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JButton jbAgregarProd;
+    private javax.swing.JButton jbCerrar;
+    private javax.swing.JButton jbFacturas;
+    private javax.swing.JButton jbGenerarFact;
+    private javax.swing.JButton jbProductos;
+    private javax.swing.JTextField jtCantidad;
+    private javax.swing.JTextField jtEmpleado;
+    private javax.swing.JTextField jtProducto;
+    private javax.swing.JTextField jtTotal;
     // End of variables declaration//GEN-END:variables
 }

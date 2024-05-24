@@ -61,7 +61,6 @@ public class JSON {
             objetoJSON.put("ID Factura", factura.getIdFactura());
             objetoJSON.put("Nombre Empleado", factura.getNombreEmpleado());
             objetoJSON.put("Nombre Producto", factura.getNombreProducto());
-            objetoJSON.put("Cantidad", factura.getCantidad());
             objetoJSON.put("Total", factura.getTotal());
             
         }
@@ -128,7 +127,6 @@ public class JSON {
                 objetoJSON.put("ID Factura", factura.getIdFactura());
                 objetoJSON.put("Nombre Empleado", factura.getNombreEmpleado());
                 objetoJSON.put("Nombre Producto", factura.getNombreProducto());
-                objetoJSON.put("Cantidad", factura.getCantidad());
                 objetoJSON.put("Total", factura.getTotal());
             }
 
@@ -191,13 +189,12 @@ public class JSON {
                     
                 } else if (ruta.equalsIgnoreCase("Facturas.txt")){
                     
-                    String idFactura=(String) jsonObject.get("ID Factura");
+                    int idFactura=((Long)jsonObject.get("ID Factura")).intValue();
                     String nombreEmpleado=(String) jsonObject.get("Nombre Empleado");
                     String nombreProducto=(String) jsonObject.get("Nombre Producto");
-                    int cantidad=((Long)jsonObject.get("Cantidad")).intValue();
                     double total=(Double)jsonObject.get("Total");
                     
-                    Factura factura= new Factura(idFactura, nombreEmpleado, nombreProducto, cantidad, total);
+                    Factura factura= new Factura(idFactura, nombreEmpleado, nombreProducto, total);
                     lista.add(factura);
                     
                 }
