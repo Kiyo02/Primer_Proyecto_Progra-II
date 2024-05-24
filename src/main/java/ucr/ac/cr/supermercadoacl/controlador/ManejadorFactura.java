@@ -41,9 +41,9 @@ public class ManejadorFactura implements ActionListener, MouseListener{
         this.fRM_Factura = new FRM_Factura();
         this.listaFactura = arregloFactura;
         this.listaProductos= arregloProducto;
+        this.panelFactura = this.fRM_Factura.getPanel();
         this.panelFactura.setTurnoEmpleado(empleado);
         
-        this.panelFactura = this.fRM_Factura.getPanel();
         this.panelFactura.escuchador(this);
         this.fRM_Factura.setVisible(true);
     

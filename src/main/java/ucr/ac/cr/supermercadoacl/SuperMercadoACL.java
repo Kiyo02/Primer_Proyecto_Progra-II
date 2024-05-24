@@ -5,7 +5,6 @@
 package ucr.ac.cr.supermercadoacl;
 
 import ucr.ac.cr.supermercadoacl.controlador.ManejadorMenu;
-import ucr.ac.cr.supermercadoacl.vista.FRM_Empleado;
 
 /**
  *
