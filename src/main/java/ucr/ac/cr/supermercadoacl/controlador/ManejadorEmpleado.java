@@ -48,7 +48,7 @@ public class ManejadorEmpleado implements ActionListener, MouseListener{
                 
                 this.empleado=this.panelEmpleado.getEmpleado();
                 
-                if (this.verificarEmpleado(empleado)!= false){
+                if (this.empleado!= null){
                     
                     FRM_Empleado.getMensaje(this.listaEmpleado.registrarEmpleado(empleado));
                     this.panelEmpleado.limpiarCampos();
@@ -62,7 +62,7 @@ public class ManejadorEmpleado implements ActionListener, MouseListener{
                 
                 this.empleado=this.panelEmpleado.getEmpleado();
                 
-                if (this.verificarEmpleado(empleado)!=false){
+                if (this.empleado!= null){
                     
                     FRM_Empleado.getMensaje(this.listaEmpleado.modificarEmpleado(empleado));
                     this.panelEmpleado.limpiarCampos();
@@ -81,7 +81,7 @@ public class ManejadorEmpleado implements ActionListener, MouseListener{
                 
                 this.empleado=this.panelEmpleado.getEmpleado();
                 
-                if (this.verificarEmpleado(empleado)!=false){
+                if (this.empleado!= null){
                     
                     FRM_Empleado.getMensaje(this.listaEmpleado.removerEmpleado(empleado));
                     this.panelEmpleado.limpiarCampos();
@@ -116,26 +116,6 @@ public class ManejadorEmpleado implements ActionListener, MouseListener{
         //----------------------------------------------------------------------
         
     }//Fin de actionEvent
-    //--------------------------------------------------------------------------
-    
-    //Metodo privado para verificar si los paneles estan vacios
-    private boolean verificarEmpleado (Empleado empleado){
-        
-        if (empleado.getUsuario().isEmpty() || empleado.getClave().isEmpty() ||
-            empleado.getNombreEmpleado().isEmpty() || empleado.getPuesto().isEmpty()){
-            
-            FRM_Empleado.getMensaje( "Datos por rellenar");
-            return false;
-            
-        } else if (empleado.getCedula()==0 || empleado.getEdad()==0){
-            
-            FRM_Empleado.getMensaje("Datos por rellenar");
-            return false;
-            
-        } 
-        
-        return true;
-    }//Fin del verificar
     //--------------------------------------------------------------------------
 
     //ListenMouse para la tabla de reporte

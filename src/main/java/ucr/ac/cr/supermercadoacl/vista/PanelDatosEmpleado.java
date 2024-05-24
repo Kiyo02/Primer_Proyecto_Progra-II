@@ -23,12 +23,15 @@ public class PanelDatosEmpleado extends javax.swing.JPanel {
     
     //Extraer los JTextField
     public Empleado getEmpleado (){
-    
-        return new Empleado(this.jtUsuario.getText(), this.jtClave.getText(),
-            this.jtNombre.getText(), this.jcPuesto.getSelectedItem().toString(),
-            Integer.parseInt(this.jtCedula.getText()), 
-            Integer.parseInt(this.jtEdad.getText()));
         
+        if (this.verificarCampos()!=true){
+            return new Empleado(this.jtUsuario.getText(), this.jtClave.getText(),
+                this.jtNombre.getText(), this.jcPuesto.getSelectedItem().toString(),
+                Integer.parseInt(this.jtCedula.getText()), 
+                Integer.parseInt(this.jtEdad.getText()));
+        }
+        
+        return null;
     }
     //--------------------------------------------------------------------------
     
@@ -197,7 +200,30 @@ public class PanelDatosEmpleado extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoEmpleados.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
     }// </editor-fold>//GEN-END:initComponents
+    public boolean verificarCampos (){
+        
+        try {
 
+            // Obtener los textos y valores necesarios
+            if (this.jtCedula.getText().isEmpty() || this.jtClave.getText().isEmpty() ||
+                this.jtEdad.getText().isEmpty() || this.jtNombre.getText().isEmpty() ||
+                this.jtUsuario.getText().isEmpty()){
+                
+                throw new NullPointerException("Hay espacios por rellenar");
+                
+            }
+                
+        } catch (NullPointerException e) {
+
+            // Manejar la excepción de campos nulos
+            System.err.println("Error: " + e.getMessage());
+            // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
+            return true;
+
+        }
+        
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
