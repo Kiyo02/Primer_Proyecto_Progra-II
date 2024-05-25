@@ -70,7 +70,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         
     }
     //--------------------------------------------------------------------------
-    
+
     //Limpiar los JTextField
     public void limpiarCampos (){
         
@@ -198,7 +198,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         try {
 
             // Obtener los textos y valores necesarios
-            if (this.jtCantidad.getText().isEmpty() || this.jtEmpleado.getText().isEmpty() ||
+            if (this.listaProductos.isEmpty() || this.jtEmpleado.getText().isEmpty() ||
                 this.jtProducto.getText().isEmpty() || this.jtTotal.getText().isEmpty()){
                 
                 throw new NullPointerException("Hay espacios por rellenar");
@@ -215,6 +215,24 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         }
         
         return false;
+    }
+    
+    public String verificarProducto (Producto producto){
+        if (Integer.parseInt(this.jtCantidad.getText())>= 0){
+            
+            if (producto.getExistencias()>= Integer.parseInt(this.jtCantidad.getText())){
+            
+                return "Autorizado";
+            
+            } else {
+                
+                return "La cantidad deseada supera las existencias del producto";
+                
+            }
+            
+        }
+        
+        return "Cantidad no disponible";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -58,11 +58,11 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Generar Factura":
                 
-                //Se usa este medio ya que para poder generar una factura hay 
-                //que registrar como minimo un producto  
-                if(this.producto!= null){
+                this.factura= this.panelFactura.getFactura(this.generarID());
+                
+                if(this.factura!= null){
                     
-                    FRM_Factura.getMensaje(listaFactura.registrarFactura(panelFactura.getFactura(this.generarID())));
+                    FRM_Factura.getMensaje(listaFactura.registrarFactura(factura));
                     this.panelFactura.limpiarFactura();
                     this.producto= null;
                     
@@ -76,22 +76,20 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Agregar Producto":
                 
-                /*if(this.producto!= null){
-                    if(bodega.getExistencias() > panelFactura.getCantidad()){
-                        producto = new Bodega(bodega.getIdProducto(),bodega.getNombreProducto(),
-                        panelFactura.getCantidad(),bodega.getPrecio());
-                        listaFactura.agregarProducto(producto);
+                if(this.producto!= null){
+                    
+                    if(this.panelFactura.verificarProducto(producto).equalsIgnoreCase("Autorizado")){
+                        
+                        this.panelFactura.setTotal();
+                        this.panelFactura.limpiarCampos();
                         this.producto= null;
                         
-                        FRM_Factura.getMensaje("Producto Agregado...");
-                        
-                        
                     }else{
-                        FRM_Factura.getMensaje("La cantidad sobrepasa a la que se tiene en Bodega");
+                        
+                        FRM_Factura.getMensaje(this.panelFactura.verificarProducto(producto));
+                        
                     }
-                }else{
-                    FRM_Factura.getMensaje("Llene todos los espacios para continuar");
-                }*/
+                }
                 
             break;
             
@@ -110,7 +108,6 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                 this.tablaSeleccionada="tblFacturas";
                 this.fRM_Reporte= new FRM_Reporte();
                 this.fRM_Reporte.setDataTable(this.listaFactura.getMatrizFactura(), Factura.TITULOS_FACTURA);
-                this.fRM_Reporte.listenMouse(this);
                 this.fRM_Reporte.setVisible(true);
                 
             break;
@@ -145,35 +142,20 @@ public class ManejadorFactura implements ActionListener, MouseListener{
     public void mouseClicked(MouseEvent e) {
         
         this.panelFactura.limpiarCampos();
-        
-        if (this.tablaSeleccionada.equalsIgnoreCase("tblProductos")){
             
-            Producto productoSeleccionado= new Producto();
-            
-            productoSeleccionado.setIdProducto(this.fRM_Reporte.getRow()[0]);
-            productoSeleccionado.setNombreProducto(this.fRM_Reporte.getRow()[1]);
-            productoSeleccionado.setTipoProducto(this.fRM_Reporte.getRow()[2]);
-            productoSeleccionado.setProvedor(this.fRM_Reporte.getRow()[3]);
-            productoSeleccionado.setExistencias(Integer.parseInt(this.fRM_Reporte.getRow()[4]));
-            productoSeleccionado.setCantidadLimite(Integer.parseInt(this.fRM_Reporte.getRow()[5]));
-            productoSeleccionado.setPrecioCompra(Double.parseDouble(this.fRM_Reporte.getRow()[6]));
-            productoSeleccionado.setPrecioVenta(Double.parseDouble(this.fRM_Reporte.getRow()[7]));
-            
-            this.panelFactura.setProduto(productoSeleccionado);
-            this.producto = productoSeleccionado;
-            
-        } else if (this.tablaSeleccionada.equalsIgnoreCase("tblFacturas")){
-            
-            Factura facturaSeleccionada= new Factura();
-            
-            facturaSeleccionada.setIdFactura(Integer.parseInt(this.fRM_Reporte.getRow()[0]));
-            facturaSeleccionada.setNombreEmpleado(this.fRM_Reporte.getRow()[1]);
-            facturaSeleccionada.setNombreProducto(this.fRM_Reporte.getRow()[2]);
-            facturaSeleccionada.setTotal(Double.parseDouble(this.fRM_Reporte.getRow()[3]));
-            
-        }
-        
-        
+        Producto productoSeleccionado= new Producto();
+
+        productoSeleccionado.setIdProducto(this.fRM_Reporte.getRow()[0]);
+        productoSeleccionado.setNombreProducto(this.fRM_Reporte.getRow()[1]);
+        productoSeleccionado.setTipoProducto(this.fRM_Reporte.getRow()[2]);
+        productoSeleccionado.setProvedor(this.fRM_Reporte.getRow()[3]);
+        productoSeleccionado.setExistencias(Integer.parseInt(this.fRM_Reporte.getRow()[4]));
+        productoSeleccionado.setCantidadLimite(Integer.parseInt(this.fRM_Reporte.getRow()[5]));
+        productoSeleccionado.setPrecioCompra(Double.parseDouble(this.fRM_Reporte.getRow()[6]));
+        productoSeleccionado.setPrecioVenta(Double.parseDouble(this.fRM_Reporte.getRow()[7]));
+
+        this.panelFactura.setProduto(productoSeleccionado);
+        this.producto = productoSeleccionado;
         this.fRM_Reporte.dispose();
         
     }
