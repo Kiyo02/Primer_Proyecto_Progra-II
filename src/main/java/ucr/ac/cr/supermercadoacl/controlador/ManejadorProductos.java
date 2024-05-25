@@ -49,7 +49,7 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 
                 this.producto= this.panelProducto.getProducto();
                 
-                if (this.verificarCampos(producto)!= true){
+                if (this.producto!= null){
                     
                     FRM_Producto.getMensaje(arregloProducto.agregarProducto(producto));
                     this.panelProducto.limpiarCampos();
@@ -62,7 +62,7 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 
                 this.producto=this.panelProducto.getProducto();
                 
-                if (this.verificarCampos(producto)!= true){
+                if (this.producto!= null){
                     
                     FRM_Producto.getMensaje(arregloProducto.editarProducto(producto));
                     this.panelProducto.limpiarCampos();
@@ -80,7 +80,7 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 
                 this.producto=this.panelProducto.getProducto();
                 
-                if (this.verificarCampos(producto)!= true){
+                if (this.producto!= null){
                     FRM_Producto.getMensaje(arregloProducto.removerProducto(producto));
                     this.panelProducto.limpiarCampos();
                     this.panelProducto.activarBotones(false);
@@ -98,7 +98,7 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 
                 this.producto=this.panelProducto.getProducto();
                 
-                if (this.verificarCampos(producto)!=true){
+                if (this.producto!= null){
                     FRM_Producto.getMensaje(this.arregloProducto.agregarStock(producto, this.panelProducto.nuevoStock()));
                     this.panelProducto.limpiarCampos();
                     this.panelProducto.activarBotones(false);
@@ -131,26 +131,6 @@ public class ManejadorProductos implements ActionListener, MouseListener{
     }
     //--------------------------------------------------------------------------
     
-    
-    //Controlador para campos vacíos
-    public boolean verificarCampos (Producto producto){
-        
-        if (producto.getIdProducto().isEmpty() || producto.getNombreProducto().isEmpty() ||
-            producto.getTipoProducto().isEmpty() || producto.getProvedor().isEmpty()){
-            
-            FRM_Producto.getMensaje("Datos por rellenar");
-            return true;
-            
-        } else if (producto.getExistencias()==0 || producto.getCantidadLimite()==0 ||
-            producto.getPrecioCompra()==0 || producto.getPrecioVenta()==0){
-            
-            FRM_Producto.getMensaje("Datos por rellenar");
-            return true;
-            
-        }
-        
-        return false;
-    }
     //ListenMouse para la tabla de reporte
     @Override
     public void mouseClicked(MouseEvent e) {
