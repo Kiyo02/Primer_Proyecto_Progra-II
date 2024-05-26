@@ -14,7 +14,7 @@ public class Producto {
     private int existencias, cantidadLimite;
     private double precioCompra, precioVenta;
     public static final String [] TITULOS_PRODUCTOS={"ID Producto", "Nombre Producto", "Tipo Producto", "Provedor", "Existencias", "Cantidad Limite", "Precio Compra", "Precio Venta"};
-    public static final String [] TITULOS_PRODUCTOS_FACTURA={"ID Producto", "Cantidad", "Precio Unidad"};
+    public static final String [] TITULOS_PRODUCTOS_FACTURA={"ID Producto","Nombre Producto", "Cantidad", "Precio Unidad"};
     //--------------------------------------------------------------------------
     
     //Contructor
@@ -31,9 +31,10 @@ public class Producto {
     }
     
     //Contructor para modulo de factura
-    public Producto (String idProducto, int cantidad, double precio){
+    public Producto (String idProducto, String nombreProducto, int cantidad, double precio){
         
-        this.idProducto= idProducto;
+        this.idProducto=idProducto;
+        this.nombreProducto= nombreProducto;
         this.existencias= cantidad;
         this.precioVenta= precio;
         
@@ -85,9 +86,12 @@ public class Producto {
                 return this.idProducto;
             
             case 1:
-                return String.valueOf(this.existencias);
+                return this.nombreProducto;
             
             case 2:
+                return String.valueOf(this.existencias);
+            
+            case 3:
                 return String.valueOf(this.precioVenta);
         }
         

@@ -35,7 +35,7 @@ public class FRM_Factura extends javax.swing.JFrame{
     public Producto getProducto (){
         
         if (this.verificarCampos()!=true){
-            return new Producto (this.jtID.getText(), 
+            return new Producto (this.jtID.getText(), this.jtNombre.getText(),
                 Integer.parseInt(this.jtCantidad.getText()),
                 Double.parseDouble(this.jtPrecio.getText()));
         }
@@ -46,9 +46,10 @@ public class FRM_Factura extends javax.swing.JFrame{
     public void setProducto (Producto producto){
         
         this.jtID.setText(producto.getIdProducto());
-        this.jtCantidad.setText(""+producto.getExistencias());
-        this.jtPrecio.setText(""+producto.getPrecioVenta());
-        this.jtTotal.setText(""+(producto.getPrecioVenta()*producto.getExistencias()));
+        this.jtNombre.setText(producto.getNombreProducto());
+        this.jtCantidad.setText(String.valueOf(producto.getExistencias()));
+        this.jtPrecio.setText(String.valueOf(producto.getPrecioVenta()));
+        this.jtTotal.setText(String.valueOf(producto.getPrecioVenta()*producto.getExistencias()));
         
     }
     
@@ -157,6 +158,8 @@ public class FRM_Factura extends javax.swing.JFrame{
         jtCantidad = new javax.swing.JTextField();
         jtPrecio = new javax.swing.JTextField();
         jbEditar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jtNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -198,13 +201,13 @@ public class FRM_Factura extends javax.swing.JFrame{
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ID Producto:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+        jLabel3.setText("ID:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Cantidad:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 370, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,11 +222,11 @@ public class FRM_Factura extends javax.swing.JFrame{
         jtID.setEditable(false);
         jtID.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jtID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(jtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 240, -1));
+        jPanel1.add(jtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 100, -1));
 
         jtCantidad.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 370, 240, -1));
+        jPanel1.add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 40, -1));
 
         jtPrecio.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jtPrecio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -233,6 +236,16 @@ public class FRM_Factura extends javax.swing.JFrame{
         jbEditar.setText("Editar Producto");
         jbEditar.setEnabled(false);
         jPanel1.add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 370, 130, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Producto:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
+
+        jtNombre.setEditable(false);
+        jtNombre.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(jtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, 240, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 460));
 
@@ -249,6 +262,7 @@ public class FRM_Factura extends javax.swing.JFrame{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCerrar;
@@ -256,6 +270,7 @@ public class FRM_Factura extends javax.swing.JFrame{
     private javax.swing.JButton jbRemoverProducto;
     private javax.swing.JTextField jtCantidad;
     private javax.swing.JTextField jtID;
+    private javax.swing.JTextField jtNombre;
     private javax.swing.JTextField jtPrecio;
     private javax.swing.JTextField jtTotal;
     private javax.swing.JTable tblFactura;

@@ -46,7 +46,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     public Factura getFactura (int idFactura){
         this.jtTotal.setText("0");
         
-        //this.listaProductos=
+        this.listaProductos=this.rellenarLista();
         
         if (this.verificarLista()!=true){
             return new Factura (idFactura, jtEmpleado.getText(), 
@@ -80,9 +80,9 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         this.jtTotal.setText(String.valueOf(total));
         
         //Se modifica la cantidad usando las existencias ya que es un producto temporal
-        this.productoFact= producto;
-        this.productoFact.setExistencias(Integer.parseInt(jtCantidad.getText()));
-        this.listaProd.add(productoFact);
+        this.listaProd.add(new Producto(producto.getIdProducto(), this.jtProducto.getText(),
+            Integer.parseInt(this.jtCantidad.getText()),
+                producto.getPrecioVenta()));
 
         
         this.jbGenerarFact.setEnabled(true);
@@ -287,6 +287,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     }
     
     public String verificarProducto(Producto producto) {
+        
         try {
             if (Integer.parseInt(this.jtCantidad.getText()) >= 0) {
                 if (producto.getExistencias() >= Integer.parseInt(this.jtCantidad.getText())) {
