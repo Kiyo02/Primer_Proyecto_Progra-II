@@ -8,12 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import ucr.ac.cr.supermercadoacl.modelo.ArregloFactura;
-import ucr.ac.cr.supermercadoacl.modelo.ArregloProducto;
+import ucr.ac.cr.supermercadoacl.modelo.ArregloCaja;
+import ucr.ac.cr.supermercadoacl.modelo.ArregloBodega;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 import ucr.ac.cr.supermercadoacl.modelo.Factura;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
-import ucr.ac.cr.supermercadoacl.vista.FRM_Factura;
+import ucr.ac.cr.supermercadoacl.vista.FRM_Caja;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Reporte;
 import ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura;
 import java.util.Random;
@@ -22,22 +22,22 @@ import java.util.Random;
  *
  * @author Axely
  */
-public class ManejadorFactura implements ActionListener, MouseListener{
+public class ManejadorCaja implements ActionListener, MouseListener{
     //Atributos y Referencias
     private Factura factura;
     private Producto producto;
     private int idFactura;
     private final Random nRandom= new Random(1000+1);
-    private final ArregloFactura listaFactura;
-    private final ArregloProducto listaProductos;
+    private final ArregloCaja listaFactura;
+    private final ArregloBodega listaProductos;
     private final PanelDatosFactura panelFactura;
-    private final FRM_Factura fRM_Factura;
+    private final FRM_Caja fRM_Factura;
     private FRM_Reporte fRM_Reporte;
     //--------------------------------------------------------------------------
     
     //Contructor
-    public ManejadorFactura(ArregloFactura arregloFactura, ArregloProducto arregloProducto, Empleado empleado) {
-        this.fRM_Factura = new FRM_Factura();
+    public ManejadorCaja(ArregloCaja arregloFactura, ArregloBodega arregloProducto, Empleado empleado) {
+        this.fRM_Factura = new FRM_Caja();
         this.listaFactura = arregloFactura;
         this.listaProductos= arregloProducto;
         this.panelFactura = this.fRM_Factura.getPanel();
@@ -61,14 +61,14 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                 
                 if(this.factura!= null){
                     
-                    FRM_Factura.getMensaje(listaFactura.registrarFactura(factura));
+                    FRM_Caja.getMensaje(listaFactura.registrarFactura(factura));
                     this.listaProductos.finalizarVenta();
                     this.panelFactura.limpiarFactura();
                     this.producto= null;
                     
                 }else{
                     
-                    FRM_Factura.getMensaje("Llene todos los espacios para continuar");
+                    FRM_Caja.getMensaje("Llene todos los espacios para continuar");
                     
                 }
                 
@@ -88,7 +88,7 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                         
                     }else{
                         
-                        FRM_Factura.getMensaje(productoVerificado);
+                        FRM_Caja.getMensaje(productoVerificado);
                         
                     }
                 }

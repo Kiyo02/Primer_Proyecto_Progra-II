@@ -5,6 +5,7 @@
 package ucr.ac.cr.supermercadoacl.vista;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 import ucr.ac.cr.supermercadoacl.modelo.Factura;
@@ -17,6 +18,7 @@ import ucr.ac.cr.supermercadoacl.modelo.Producto;
 public class PanelDatosFactura extends javax.swing.JPanel {
     private double total;
     private String listaProductos;
+    private ArrayList <Producto> listaProd;
     //--------------------------------------------------------------------------
     
     /**
@@ -71,8 +73,9 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     public void setTotal(Producto producto){
         
         this.total+=(producto.getPrecioVenta()*Integer.parseInt(jtCantidad.getText()));
-        this.listaProductos+="producto "+this.jtProducto.getText()+
-            ", cantidad "+ this.jtCantidad.getText()+ " --- ";
+        //this.listaProductos+="producto "+this.jtProducto.getText()+
+        //    ", cantidad "+ this.jtCantidad.getText()+ " --- ";
+        this.listaProd.add(producto);
         
         this.jtTotal.setText(String.valueOf(total));
         this.jbGenerarFact.setEnabled(true);
@@ -90,6 +93,13 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         
     }
     //--------------------------------------------------------------------------
+    
+    public ArrayList facturaTemp (Producto producto){
+        
+        this.listaProd.add(producto);
+        
+        return listaProd;
+    }
     
     public void limpiarFactura (){
         

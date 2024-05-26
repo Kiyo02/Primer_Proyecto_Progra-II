@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Axely
  */
-public class ArregloFactura {
+public class ArregloCaja {
     //Referencias y Atributos
     private static final String filePath="Facturas.txt";
     private final JSON complementoJSON;
@@ -19,7 +19,7 @@ public class ArregloFactura {
     
     //Contructor
 
-    public ArregloFactura() {
+    public ArregloCaja() {
         this.complementoJSON= new JSON();
         this.listaFactura= this.complementoJSON.cargarJSON(filePath);
         

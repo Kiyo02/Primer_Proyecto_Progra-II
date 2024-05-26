@@ -7,9 +7,9 @@ package ucr.ac.cr.supermercadoacl.controlador;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import ucr.ac.cr.supermercadoacl.modelo.ArregloProducto;
+import ucr.ac.cr.supermercadoacl.modelo.ArregloBodega;
 import ucr.ac.cr.supermercadoacl.modelo.ArregloEmpleado;
-import ucr.ac.cr.supermercadoacl.modelo.ArregloFactura;
+import ucr.ac.cr.supermercadoacl.modelo.ArregloCaja;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Menu;
 
@@ -21,19 +21,19 @@ public class ManejadorMenu implements ActionListener{
     //Atributos y Referencias
     private FRM_Menu fRM_Menu;
     private ArregloEmpleado arregloEmpleado;
-    private ArregloProducto arregloProductos;
-    private ArregloFactura arregloFactura;
+    private ArregloBodega arregloProductos;
+    private ArregloCaja arregloFactura;
     private ManejadorEmpleado manejadorEmpleado;
-    private ManejadorProductos manejadorProductos;
-    private ManejadorFactura manejadorFactura;
+    private ManejadorBodega manejadorProductos;
+    private ManejadorCaja manejadorFactura;
     private Empleado empleado;
     //--------------------------------------------------------------------------
     public ManejadorMenu() {
         
         this.fRM_Menu= new FRM_Menu();
         this.arregloEmpleado= new ArregloEmpleado();
-        this.arregloProductos= new ArregloProducto();
-        this.arregloFactura= new ArregloFactura();
+        this.arregloProductos= new ArregloBodega();
+        this.arregloFactura= new ArregloCaja();
         
         this.fRM_Menu.setEscuchadores(this);
         this.fRM_Menu.setVisible(true);
@@ -87,7 +87,7 @@ public class ManejadorMenu implements ActionListener{
             
             case "Bodega":
                 
-                this.manejadorProductos= new ManejadorProductos(this.arregloProductos);
+                this.manejadorProductos= new ManejadorBodega(this.arregloProductos);
                 
             break;
             //------------------------------------------------------------------
@@ -95,7 +95,7 @@ public class ManejadorMenu implements ActionListener{
             case "Caja":
                 this.empleado=this.arregloEmpleado.esEmpleado(empleado);
                 
-                this.manejadorFactura= new ManejadorFactura(this.arregloFactura,
+                this.manejadorFactura= new ManejadorCaja(this.arregloFactura,
                     this.arregloProductos, this.empleado);
                 
             break;

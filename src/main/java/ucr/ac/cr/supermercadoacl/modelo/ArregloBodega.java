@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author Axely
  */
-public class ArregloProducto {
+public class ArregloBodega {
     //Atributos y Referencias
     private static final String filePath="Bodega.txt";
     private ArrayList <Producto> listaProductos;
@@ -18,7 +18,7 @@ public class ArregloProducto {
     //--------------------------------------------------------------------------
 
     //Constructor
-    public ArregloProducto() {
+    public ArregloBodega() {
         this.complementoJSON= new JSON();
         this.listaProductos= this.complementoJSON.cargarJSON(filePath);
         

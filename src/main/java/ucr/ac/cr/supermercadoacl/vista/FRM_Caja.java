@@ -11,32 +11,33 @@ import javax.swing.JOptionPane;
  *
  * @author Axely
  */
-public class FRM_Producto extends javax.swing.JFrame {
-    
-    public FRM_Producto() {
+public class FRM_Caja extends javax.swing.JFrame {
+
+    /**
+     * Creates new form FRM_Factura
+     */
+    public FRM_Caja() {
         initComponents();
     }
-    //--------------------------------------------------------------------------
     
     public static void getMensaje (String mensaje){
         
         JOptionPane.showMessageDialog(null, mensaje);
-         
-    }
-    //--------------------------------------------------------------------------
-    
-    public PanelDatosProducto getPanelDatos(){
-        return this.panelDatosProducto1;
-    }
-    //--------------------------------------------------------------------------
-    
-    public void setEscuchadores(ActionListener manejador){
-        
-        this.panelDatosProducto1.escuchador(manejador);
         
     }
-    //--------------------------------------------------------------------------
     
+    public void setEscuchadores (ActionListener manejador){
+        
+        this.panelDatosFactura1.escuchador(manejador);
+        
+    }
+    
+    public PanelDatosFactura getPanel (){
+        
+        return panelDatosFactura1;
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,16 +47,17 @@ public class FRM_Producto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelDatosProducto1 = new ucr.ac.cr.supermercadoacl.vista.PanelDatosProducto();
+        panelDatosFactura1 = new ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelDatosProducto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(panelDatosFactura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ucr.ac.cr.supermercadoacl.vista.PanelDatosProducto panelDatosProducto1;
+    private ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura panelDatosFactura1;
     // End of variables declaration//GEN-END:variables
 }

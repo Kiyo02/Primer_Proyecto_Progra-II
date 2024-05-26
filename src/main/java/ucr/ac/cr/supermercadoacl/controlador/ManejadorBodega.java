@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import ucr.ac.cr.supermercadoacl.modelo.ArregloProducto;
+import ucr.ac.cr.supermercadoacl.modelo.ArregloBodega;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
-import ucr.ac.cr.supermercadoacl.vista.FRM_Producto;
+import ucr.ac.cr.supermercadoacl.vista.FRM_Bodega;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Reporte;
 import ucr.ac.cr.supermercadoacl.vista.PanelDatosProducto;
 
@@ -18,19 +18,19 @@ import ucr.ac.cr.supermercadoacl.vista.PanelDatosProducto;
  *
  * @author Axely
  */
-public class ManejadorProductos implements ActionListener, MouseListener{
+public class ManejadorBodega implements ActionListener, MouseListener{
     //Atributos y Referencias
     private Producto producto;
-    private ArregloProducto arregloProducto;
+    private ArregloBodega arregloProducto;
     private FRM_Reporte fRM_Reporte;
     private PanelDatosProducto panelProducto;
-    private FRM_Producto frm_Productos;
+    private FRM_Bodega frm_Productos;
     //--------------------------------------------------------------------------
     
     //Contructor
-    public ManejadorProductos(ArregloProducto arregloBodega) {
-        this.frm_Productos= new FRM_Producto();
-        this.arregloProducto= new ArregloProducto();
+    public ManejadorBodega(ArregloBodega arregloBodega) {
+        this.frm_Productos= new FRM_Bodega();
+        this.arregloProducto= new ArregloBodega();
         this.panelProducto=this.frm_Productos.getPanelDatos();
         this.panelProducto.escuchador(this);
         
@@ -51,7 +51,7 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 
                 if (this.producto!= null){
                     
-                    FRM_Producto.getMensaje(arregloProducto.agregarProducto(producto));
+                    FRM_Bodega.getMensaje(arregloProducto.agregarProducto(producto));
                     this.panelProducto.limpiarCampos();
                     
                 }
@@ -64,13 +64,13 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 
                 if (this.producto!= null){
                     
-                    FRM_Producto.getMensaje(arregloProducto.editarProducto(producto));
+                    FRM_Bodega.getMensaje(arregloProducto.editarProducto(producto));
                     this.panelProducto.limpiarCampos();
                     this.panelProducto.activarBotones(false);
                     
                 } else {
                     
-                    FRM_Producto.getMensaje("Selecciona un producto por medio del boton de productos");
+                    FRM_Bodega.getMensaje("Selecciona un producto por medio del boton de productos");
                     
                 }
                 
@@ -81,14 +81,14 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 this.producto=this.panelProducto.getProducto();
                 
                 if (this.producto!= null){
-                    FRM_Producto.getMensaje(arregloProducto.removerProducto(producto));
+                    FRM_Bodega.getMensaje(arregloProducto.removerProducto(producto));
                     this.panelProducto.limpiarCampos();
                     this.panelProducto.activarBotones(false);
                     
                     
                 } else {
                     
-                    FRM_Producto.getMensaje("Selecciona un producto por medio del boton de productos");
+                    FRM_Bodega.getMensaje("Selecciona un producto por medio del boton de productos");
                     
                 }
                 
@@ -99,13 +99,13 @@ public class ManejadorProductos implements ActionListener, MouseListener{
                 this.producto=this.panelProducto.getProducto();
                 
                 if (this.producto!= null){
-                    FRM_Producto.getMensaje(this.arregloProducto.agregarStock(producto, this.panelProducto.nuevoStock()));
+                    FRM_Bodega.getMensaje(this.arregloProducto.agregarStock(producto, this.panelProducto.nuevoStock()));
                     this.panelProducto.limpiarCampos();
                     this.panelProducto.activarBotones(false);
                     
                 } else {
                     
-                    FRM_Producto.getMensaje("Selecciona un producto por medio del boton de productos");
+                    FRM_Bodega.getMensaje("Selecciona un producto por medio del boton de productos");
                     
                 }
                 
