@@ -169,8 +169,8 @@ public class JSON {
                     String provedor=(String) jsonObject.get("Provedor");
                     int existencias=((Long)jsonObject.get("Existencias")).intValue();
                     int cantidadLimite=((Long)jsonObject.get("Cantidad Limite")).intValue();
-                    double precioCompra=(Double)jsonObject.get("Precio Venta");
-                    double precioVenta=(Double)jsonObject.get("Precio Compra");
+                    double precioCompra=(Double)jsonObject.get("Precio Compra");
+                    double precioVenta=(Double)jsonObject.get("Precio Venta");
                     
                     Producto bodega= new Producto(idProducto, nombreProducto, tipoProducto, provedor, existencias, cantidadLimite, precioCompra, precioVenta);
                     lista.add(bodega);

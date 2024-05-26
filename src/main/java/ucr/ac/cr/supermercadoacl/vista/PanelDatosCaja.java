@@ -15,16 +15,16 @@ import ucr.ac.cr.supermercadoacl.modelo.Producto;
  *
  * @author Axely
  */
-public class PanelDatosFactura extends javax.swing.JPanel {
+public class PanelDatosCaja extends javax.swing.JPanel {
     private double total;
     private String listaProductos;
-    private ArrayList <Producto> listaProd;
+    private ArrayList <Producto> listaProd= new ArrayList<>();
     //--------------------------------------------------------------------------
     
     /**
      * Creates new form PanelDatosFactura
      */
-    public PanelDatosFactura() {
+    public PanelDatosCaja() {
         initComponents();
     }
     //--------------------------------------------------------------------------
@@ -43,7 +43,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     //--------------------------------------------------------------------------
     
     public Factura getFactura (int idFactura){
-        this.jtTotal.setText("");
+        this.jtTotal.setText("0");
         
         if (this.verificarCampos()!=true){
             return new Factura (idFactura, jtEmpleado.getText(), 
@@ -66,6 +66,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         
         
        this.jtProducto.setText(producto.getNombreProducto());
+       this.jbAgregarProd.setEnabled(true);
        
         
     }
@@ -73,13 +74,15 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     public void setTotal(Producto producto){
         
         this.total+=(producto.getPrecioVenta()*Integer.parseInt(jtCantidad.getText()));
-        //this.listaProductos+="producto "+this.jtProducto.getText()+
-        //    ", cantidad "+ this.jtCantidad.getText()+ " --- ";
+        this.listaProductos+="producto "+this.jtProducto.getText()+
+            ", cantidad "+ this.jtCantidad.getText()+ " --- ";
         this.listaProd.add(producto);
-        
+
         this.jtTotal.setText(String.valueOf(total));
         this.jbGenerarFact.setEnabled(true);
         this.jbLimpiar.setEnabled(true);
+        this.jbEditar.setEnabled(true);
+        this.jbAgregarProd.setEnabled(false);
         this.limpiarCampos();
         
     }
@@ -92,13 +95,24 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         this.jtProducto.setText("");
         
     }
+    
+    public void activarBotones (boolean estado){
+        
+        this.jbAgregarProd.setEnabled(estado);
+        this.jbLimpiar.setEnabled(estado);
+        
+    }
     //--------------------------------------------------------------------------
     
-    public ArrayList facturaTemp (Producto producto){
-        
-        this.listaProd.add(producto);
+    public ArrayList getFacturaTemp (){
         
         return listaProd;
+    }
+    
+    public void setFacturaTemp (ArrayList listaProductos){
+        
+        this.listaProd= listaProductos;
+        
     }
     
     public void limpiarFactura (){
@@ -120,6 +134,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         this.jbGenerarFact.addActionListener(manejador);
         this.jbProductos.addActionListener(manejador);
         this.jbLimpiar.addActionListener(manejador);
+        this.jbEditar.addActionListener(manejador);
     }
 
     /**
@@ -147,6 +162,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jtEmpleado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jbLimpiar = new javax.swing.JButton();
+        jbEditar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -186,12 +202,13 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         add(jbProductos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 130, -1));
 
         jbFacturas.setText("Facturas");
-        add(jbFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 130, -1));
+        add(jbFacturas, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 90, -1));
 
         jbCerrar.setText("Cerrar");
-        add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
+        add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 80, -1));
 
         jtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtTotal.setText("0");
         jtTotal.setEnabled(false);
         add(jtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 270, -1));
 
@@ -215,6 +232,10 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jbLimpiar.setEnabled(false);
         add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 130, -1));
 
+        jbEditar.setText("Editar Factura");
+        jbEditar.setEnabled(false);
+        add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 130, -1));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
@@ -222,7 +243,6 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         
         try {
 
-            // Obtener los textos y valores necesarios
             if (this.listaProductos.isEmpty() || this.jtEmpleado.getText().isEmpty() ||
                 this.jtProducto.getText().isEmpty() || this.jtTotal.getText().isEmpty()){
                 
@@ -234,7 +254,6 @@ public class PanelDatosFactura extends javax.swing.JPanel {
 
             // Manejar la excepción de campos nulos
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-            // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
             return true;
 
         }
@@ -270,6 +289,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JButton jbAgregarProd;
     private javax.swing.JButton jbCerrar;
+    private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbFacturas;
     private javax.swing.JButton jbGenerarFact;
     private javax.swing.JButton jbLimpiar;

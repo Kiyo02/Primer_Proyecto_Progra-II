@@ -32,7 +32,7 @@ public class FRM_Caja extends javax.swing.JFrame {
         
     }
     
-    public PanelDatosFactura getPanel (){
+    public PanelDatosCaja getPanel (){
         
         return panelDatosFactura1;
         
@@ -47,7 +47,7 @@ public class FRM_Caja extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelDatosFactura1 = new ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura();
+        panelDatosFactura1 = new ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,6 +58,6 @@ public class FRM_Caja extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura panelDatosFactura1;
+    private ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja panelDatosFactura1;
     // End of variables declaration//GEN-END:variables
 }

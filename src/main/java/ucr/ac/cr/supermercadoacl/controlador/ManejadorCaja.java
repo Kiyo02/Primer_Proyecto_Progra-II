@@ -15,8 +15,9 @@ import ucr.ac.cr.supermercadoacl.modelo.Factura;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Caja;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Reporte;
-import ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura;
+import ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja;
 import java.util.Random;
+import ucr.ac.cr.supermercadoacl.vista.FRM_Factura;
 
 /**
  *
@@ -30,21 +31,22 @@ public class ManejadorCaja implements ActionListener, MouseListener{
     private final Random nRandom= new Random(1000+1);
     private final ArregloCaja listaFactura;
     private final ArregloBodega listaProductos;
-    private final PanelDatosFactura panelFactura;
-    private final FRM_Caja fRM_Factura;
+    private final PanelDatosCaja panelFactura;
+    private final FRM_Caja fRM_Caja;
     private FRM_Reporte fRM_Reporte;
+    private ManejadorFactura manejadorFactura;
     //--------------------------------------------------------------------------
     
     //Contructor
     public ManejadorCaja(ArregloCaja arregloFactura, ArregloBodega arregloProducto, Empleado empleado) {
-        this.fRM_Factura = new FRM_Caja();
+        this.fRM_Caja = new FRM_Caja();
         this.listaFactura = arregloFactura;
         this.listaProductos= arregloProducto;
-        this.panelFactura = this.fRM_Factura.getPanel();
+        this.panelFactura = this.fRM_Caja.getPanel();
         this.panelFactura.setTurnoEmpleado(empleado);
         
         this.panelFactura.escuchador(this);
-        this.fRM_Factura.setVisible(true);
+        this.fRM_Caja.setVisible(true);
     
     }
     //--------------------------------------------------------------------------
@@ -121,10 +123,16 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 
             break;
             
+            case "Editar Factura":
+                
+                this.manejadorFactura= new ManejadorFactura(this.panelFactura.getFacturaTemp());
+                
+            break;
+            
             case "Cerrar":
                 
                 this.listaProductos.cierreDeCaja();
-                this.fRM_Factura.dispose();
+                this.fRM_Caja.dispose();
                 
             break;
             
@@ -164,7 +172,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
         productoSeleccionado.setPrecioVenta(Double.parseDouble(this.fRM_Reporte.getRow()[7]));
 
         this.panelFactura.setProduto(productoSeleccionado);
-        this.producto = productoSeleccionado;
+        this.producto= productoSeleccionado;
         this.fRM_Reporte.dispose();
         
     }

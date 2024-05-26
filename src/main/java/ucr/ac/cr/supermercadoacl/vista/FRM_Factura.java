@@ -4,6 +4,7 @@
  */
 package ucr.ac.cr.supermercadoacl.vista;
 
+import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +24,12 @@ public class FRM_Factura extends javax.swing.JFrame{
      */
     public FRM_Factura() {
         initComponents();
+    }
+    
+    public static void getMensaje (String mensaje){
+        
+        JOptionPane.showMessageDialog(null, mensaje);
+        
     }
     
     public Producto getProducto (){
@@ -49,6 +56,15 @@ public class FRM_Factura extends javax.swing.JFrame{
         
         this.jbRemoverProducto.setEnabled(estado);
         this.jbEditar.setEnabled(estado);
+        
+    }
+    
+    public void limpiarCampos (){
+        
+        this.jtCantidad.setText("");
+        this.jtID.setText("");
+        this.jtPrecio.setText("");
+        this.jtTotal.setText("");
         
     }
     
@@ -82,6 +98,14 @@ public class FRM_Factura extends javax.swing.JFrame{
     public void listenMouse (MouseListener controller){
         
         this.tblFactura.addMouseListener(controller);
+        
+    }
+    
+    public void escuchadores (ActionListener manejador){
+    
+        this.jbCerrar.addActionListener(manejador);
+        this.jbEditar.addActionListener(manejador);
+        this.jbRemoverProducto.addActionListener(manejador);
         
     }
     

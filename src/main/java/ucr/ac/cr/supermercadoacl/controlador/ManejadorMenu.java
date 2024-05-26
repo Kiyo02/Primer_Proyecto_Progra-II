@@ -19,10 +19,10 @@ import ucr.ac.cr.supermercadoacl.vista.FRM_Menu;
  */
 public class ManejadorMenu implements ActionListener{
     //Atributos y Referencias
-    private FRM_Menu fRM_Menu;
-    private ArregloEmpleado arregloEmpleado;
-    private ArregloBodega arregloProductos;
-    private ArregloCaja arregloFactura;
+    private final FRM_Menu fRM_Menu;
+    private final ArregloEmpleado arregloEmpleado;
+    private final ArregloBodega arregloProductos;
+    private final ArregloCaja arregloFactura;
     private ManejadorEmpleado manejadorEmpleado;
     private ManejadorBodega manejadorProductos;
     private ManejadorCaja manejadorFactura;

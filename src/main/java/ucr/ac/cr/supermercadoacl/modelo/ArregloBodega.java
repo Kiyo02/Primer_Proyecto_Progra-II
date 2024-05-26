@@ -111,6 +111,37 @@ public class ArregloBodega {
         }
         return matrizProductos;
     }
+    
+        //Metodo para asignar datos a la tabla de la factura
+    public String[][] getMatrizProductosTemp (ArrayList<Producto> listaProductos){
+        String[][] matrizFacturaTemp= new String[listaProductos.size()][Producto.TITULOS_PRODUCTOS_FACTURA.length];
+        
+        for (int f=0; f<matrizFacturaTemp.length; f++){
+            for (int c=0; c<matrizFacturaTemp[0].length; c++){
+                
+                matrizFacturaTemp[f][c]=listaProductos.get(f).getDatosProductosFactura(c);
+
+                
+            }
+        }
+        
+        return matrizFacturaTemp;
+    }
+    
+    public ArrayList <Producto> editarListaProductos (ArrayList listaProductos, Producto producto){
+        ArrayList<Producto> listaEditar=listaProductos;
+        
+        for (Producto miProducto : listaEditar) {
+            if (miProducto.getIdProducto().equalsIgnoreCase(producto.getIdProducto())){
+                
+                listaEditar.remove(miProducto);
+                listaEditar.add(producto);
+                return listaEditar;
+            }
+        }
+        
+        return null;
+    }
     //--------------------------------------------------------------------------
     
     //************************************************************************//

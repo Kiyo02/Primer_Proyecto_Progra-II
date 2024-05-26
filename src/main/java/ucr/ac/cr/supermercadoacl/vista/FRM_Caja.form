@@ -25,7 +25,7 @@
     <Property name="useNullLayout" type="boolean" value="false"/>
   </Layout>
   <SubComponents>
-    <Component class="ucr.ac.cr.supermercadoacl.vista.PanelDatosFactura" name="panelDatosFactura1">
+    <Component class="ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja" name="panelDatosFactura1">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="0" y="0" width="-1" height="-1"/>
