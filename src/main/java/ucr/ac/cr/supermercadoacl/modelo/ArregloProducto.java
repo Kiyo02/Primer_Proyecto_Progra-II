@@ -14,7 +14,7 @@ public class ArregloProducto {
     //Atributos y Referencias
     private static final String filePath="Bodega.txt";
     private ArrayList <Producto> listaProductos;
-    private JSON complementoJSON;
+    private final JSON complementoJSON;
     //--------------------------------------------------------------------------
 
     //Constructor
@@ -57,7 +57,7 @@ public class ArregloProducto {
         
         return "Error";
     }
-    
+    //--------------------------------------------------------------------------
     
     public String editarProducto(Producto producto) {
         Producto productoBuscado= this.buscarProducto(producto.getIdProducto());
@@ -73,30 +73,7 @@ public class ArregloProducto {
         
         return "Error";
     }
-    
-    
-    public String ventaProducto(Producto producto, int cantidad) {
-        Producto productoBuscado= this.buscarProducto(producto.getIdProducto());
-        
-        if (productoBuscado!= null){
-            
-            if (productoBuscado.getExistencias() >= cantidad) {
-            
-                producto.setExistencias(productoBuscado.getExistencias()-cantidad);
-                this.listaProductos.remove(productoBuscado);
-                this.listaProductos.add(producto);
-                this.complementoJSON.sobrescribirJSON(listaProductos, filePath);
-                return "Venta realizada correctamente";
-                
-            } else {
-                
-                return "Existencias insuficiente";
-                
-            }
-        }
-            
-        return "Error";
-    }
+    //--------------------------------------------------------------------------
     
     public String agregarStock(Producto producto, int cantidad) {
         Producto productoBuscado= this.buscarProducto(producto.getIdProducto());
@@ -120,6 +97,7 @@ public class ArregloProducto {
         }
         return "Producto no registrado";   
     }
+    //--------------------------------------------------------------------------
 
     public String[][] getMatrizProductos() {
         String[][] matrizProductos= new String[this.listaProductos.size()][Producto.TITULOS_PRODUCTOS.length];
@@ -152,4 +130,42 @@ public class ArregloProducto {
     }
     //--------------------------------------------------------------------------
     
-}//Fin de Clase
+    //************************************************************************//
+    //----------------Metodos Complementarios Para Factura--------------------//
+    //************************************************************************//
+    //Estos metodos son especificos para el modulo de Factura
+    //Consiste en controlar el hecho de que una compra no se finalice
+    //Entonces se basa en dividir el metodo principal (ventaProducto) en 3
+    //Para que uno actualice el Array, otro el JSON y el otro en una factura cancelada
+    public String ventaProducto(Producto producto, int cantidad) {
+        Producto productoBuscado= this.buscarProducto(producto.getIdProducto());
+        
+        if (productoBuscado!= null){
+
+            producto.setExistencias(productoBuscado.getExistencias()-cantidad);
+            this.listaProductos.remove(productoBuscado);
+            this.listaProductos.add(producto);
+            return "Venta realizada correctamente";
+
+        }
+            
+        return "Se ha generado un error inprevisto";
+    }
+    //--------------------------------------------------------------------------
+    
+    //Metodo para cada vez que se finaliza una factura
+    public void finalizarVenta (){
+        
+        this.complementoJSON.sobrescribirJSON(listaProductos, filePath);
+    }
+    //--------------------------------------------------------------------------
+    
+    //Metodo para cada vez que se cancela una factura o se cierra la caja
+    public void cierreDeCaja (){
+        
+        this.listaProductos=this.complementoJSON.cargarJSON(filePath);
+        
+    }
+    
+    //--------------------------------------------------------------------------
+}//Fin de Clase//---------------------------------------------------------------

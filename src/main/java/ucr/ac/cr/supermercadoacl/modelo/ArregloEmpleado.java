@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ArregloEmpleado {
     //Referencias y Atributos
     private static final String filePath="Empleados.txt";
-    private JSON complementoJSON;
+    private final JSON complementoJSON;
     private ArrayList <Empleado> listaEmpleados;
     //La llave no se añade al Array, ya que es el llave xd
     private static final Empleado llave= new Empleado("admin", "nose", "Rodolfo", "Gerente", 2024, 111);
@@ -151,6 +151,7 @@ public class ArregloEmpleado {
         
         return null;
     }
+    //--------------------------------------------------------------------------
     
     //Metodo que devuelve un empleado registrado con la cedula que se desea buscar
     public Empleado buscarEmpleado(int cedula) {
@@ -165,5 +166,6 @@ public class ArregloEmpleado {
         }
         return null;
     }
+    
     //--------------------------------------------------------------------------
-}
+}//Fin de Clase//---------------------------------------------------------------

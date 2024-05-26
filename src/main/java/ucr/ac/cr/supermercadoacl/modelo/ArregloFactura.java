@@ -13,9 +13,8 @@ import java.util.ArrayList;
 public class ArregloFactura {
     //Referencias y Atributos
     private static final String filePath="Facturas.txt";
-    private JSON complementoJSON;
+    private final JSON complementoJSON;
     private ArrayList <Factura> listaFactura;
-    private ArrayList<Producto> listaBodega;
     //--------------------------------------------------------------------------
     
     //Contructor
@@ -83,6 +82,6 @@ public class ArregloFactura {
         }
         return null;
     }
-    //--------------------------------------------------------------------------
     
-}
+    //--------------------------------------------------------------------------
+}//Fin de Clase//---------------------------------------------------------------

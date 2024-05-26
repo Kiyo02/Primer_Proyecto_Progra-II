@@ -27,12 +27,11 @@ public class ManejadorFactura implements ActionListener, MouseListener{
     private Factura factura;
     private Producto producto;
     private int idFactura;
-    private String tablaSeleccionada;
-    private Random nRandom= new Random(1000+1);
-    private ArregloFactura listaFactura;
-    private ArregloProducto listaProductos;
-    private PanelDatosFactura panelFactura;
-    private FRM_Factura fRM_Factura;
+    private final Random nRandom= new Random(1000+1);
+    private final ArregloFactura listaFactura;
+    private final ArregloProducto listaProductos;
+    private final PanelDatosFactura panelFactura;
+    private final FRM_Factura fRM_Factura;
     private FRM_Reporte fRM_Reporte;
     //--------------------------------------------------------------------------
     
@@ -63,6 +62,7 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                 if(this.factura!= null){
                     
                     FRM_Factura.getMensaje(listaFactura.registrarFactura(factura));
+                    this.listaProductos.finalizarVenta();
                     this.panelFactura.limpiarFactura();
                     this.producto= null;
                     
@@ -76,17 +76,19 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Agregar Producto":
                 
+                //El producto se actualiza en el MouseClicked
+                String productoVerificado=this.panelFactura.verificarProducto(producto);
                 if(this.producto!= null){
                     
-                    if(this.panelFactura.verificarProducto(producto).equalsIgnoreCase("Autorizado")){
+                    if(productoVerificado.equalsIgnoreCase("Autorizado")){
                         
-                        this.panelFactura.setTotal();
-                        this.panelFactura.limpiarCampos();
+                        this.listaProductos.ventaProducto(producto, this.panelFactura.getCantidad());
+                        this.panelFactura.setTotal(producto);
                         this.producto= null;
                         
                     }else{
                         
-                        FRM_Factura.getMensaje(this.panelFactura.verificarProducto(producto));
+                        FRM_Factura.getMensaje(productoVerificado);
                         
                     }
                 }
@@ -95,7 +97,6 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Productos":
                 
-                this.tablaSeleccionada="tblProductos";
                 this.fRM_Reporte= new FRM_Reporte();
                 this.fRM_Reporte.setDataTable(this.listaProductos.getMatrizProductos(), Producto.TITULOS_PRODUCTOS);
                 this.fRM_Reporte.listenMouse(this);
@@ -105,7 +106,6 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Facturas":
                 
-                this.tablaSeleccionada="tblFacturas";
                 this.fRM_Reporte= new FRM_Reporte();
                 this.fRM_Reporte.setDataTable(this.listaFactura.getMatrizFactura(), Factura.TITULOS_FACTURA);
                 this.fRM_Reporte.setVisible(true);
@@ -113,8 +113,17 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             break;
             
             
+            case "Limpiar Factura":
+                
+                this.panelFactura.limpiarCampos();
+                this.panelFactura.limpiarFactura();
+                this.listaProductos.cierreDeCaja();
+                
+            break;
+            
             case "Cerrar":
                 
+                this.listaProductos.cierreDeCaja();
                 this.fRM_Factura.dispose();
                 
             break;

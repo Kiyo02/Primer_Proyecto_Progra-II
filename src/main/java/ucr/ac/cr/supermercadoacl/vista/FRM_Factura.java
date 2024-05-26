@@ -51,7 +51,7 @@ public class FRM_Factura extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelDatosFactura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 290));
+        getContentPane().add(panelDatosFactura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

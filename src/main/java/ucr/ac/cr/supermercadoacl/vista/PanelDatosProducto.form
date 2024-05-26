@@ -40,7 +40,6 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Registrar"/>
-        <Property name="actionCommand" type="java.lang.String" value="Registrar"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -57,7 +56,6 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
-        <Property name="actionCommand" type="java.lang.String" value="Editar"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>
@@ -91,7 +89,6 @@
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Remover"/>
-        <Property name="actionCommand" type="java.lang.String" value="Remover"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Constraints>

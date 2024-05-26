@@ -21,9 +21,9 @@ import ucr.ac.cr.supermercadoacl.vista.PanelDatosEmpleado;
 public class ManejadorEmpleado implements ActionListener, MouseListener{
     //Atributos y Referencias
     private Empleado empleado;
-    private ArregloEmpleado listaEmpleado;
-    private PanelDatosEmpleado panelEmpleado;
-    private FRM_Empleado frm_Empleado;
+    private final ArregloEmpleado listaEmpleado;
+    private final PanelDatosEmpleado panelEmpleado;
+    private final FRM_Empleado frm_Empleado;
     private FRM_Reporte frm_Reporte;
     //--------------------------------------------------------------------------
 

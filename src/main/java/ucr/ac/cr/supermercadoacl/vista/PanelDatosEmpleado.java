@@ -5,6 +5,7 @@
 package ucr.ac.cr.supermercadoacl.vista;
 
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 
 /**
@@ -216,7 +217,7 @@ public class PanelDatosEmpleado extends javax.swing.JPanel {
         } catch (NullPointerException e) {
 
             // Manejar la excepción de campos nulos
-            System.err.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage()); 
             // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
             return true;
 

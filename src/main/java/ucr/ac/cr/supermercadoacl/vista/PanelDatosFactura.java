@@ -5,6 +5,7 @@
 package ucr.ac.cr.supermercadoacl.vista;
 
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 import ucr.ac.cr.supermercadoacl.modelo.Factura;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
@@ -50,23 +51,33 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         return null;
     }
     //--------------------------------------------------------------------------
+
+    //Metodo para extraer la cantidad
+    public int getCantidad (){
+        
+        return Integer.parseInt(this.jtCantidad.getText());
+    }
+    //--------------------------------------------------------------------------
     
-    //  
+    //
     public void setProduto (Producto producto){
+        
         
        this.jtProducto.setText(producto.getNombreProducto());
        
         
     }
     //--------------------------------------------------------------------------
-    public void setTotal(){
+    public void setTotal(Producto producto){
         
-        this.total+=Double.parseDouble(this.jtTotal.getText());
+        this.total+=(producto.getPrecioVenta()*Integer.parseInt(jtCantidad.getText()));
         this.listaProductos+="producto "+this.jtProducto.getText()+
-            ", cantidad "+ this.jtCantidad.getText();
+            ", cantidad "+ this.jtCantidad.getText()+ " --- ";
         
-        this.jtTotal.setText(""+total);
+        this.jtTotal.setText(String.valueOf(total));
         this.jbGenerarFact.setEnabled(true);
+        this.jbLimpiar.setEnabled(true);
+        this.limpiarCampos();
         
     }
     //--------------------------------------------------------------------------
@@ -90,7 +101,6 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
-    
     //ActionListener de los botones
     public void escuchador (ActionListener manejador){
         
@@ -99,7 +109,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         this.jbFacturas.addActionListener(manejador);
         this.jbGenerarFact.addActionListener(manejador);
         this.jbProductos.addActionListener(manejador);
-        
+        this.jbLimpiar.addActionListener(manejador);
     }
 
     /**
@@ -126,6 +136,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jtProducto = new javax.swing.JTextField();
         jtEmpleado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jbLimpiar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -190,8 +201,12 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         jLabel1.setText("Nota: Una vez agregado un producto en la factura  ya no se puede remover de la lista de productos.");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
+        jbLimpiar.setText("Limpiar Factura");
+        jbLimpiar.setEnabled(false);
+        add(jbLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 130, -1));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 300));
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
     public boolean verificarCampos (){
         
@@ -208,7 +223,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
         } catch (NullPointerException e) {
 
             // Manejar la excepción de campos nulos
-            System.err.println("Error: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
             return true;
 
@@ -232,7 +247,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
             
         }
         
-        return "Cantidad no disponible";
+        return "Numeración no disponible";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -247,6 +262,7 @@ public class PanelDatosFactura extends javax.swing.JPanel {
     private javax.swing.JButton jbCerrar;
     private javax.swing.JButton jbFacturas;
     private javax.swing.JButton jbGenerarFact;
+    private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbProductos;
     private javax.swing.JTextField jtCantidad;
     private javax.swing.JTextField jtEmpleado;
