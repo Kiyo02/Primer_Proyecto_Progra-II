@@ -17,7 +17,6 @@ import ucr.ac.cr.supermercadoacl.vista.FRM_Caja;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Reporte;
 import ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja;
 import java.util.Random;
-import ucr.ac.cr.supermercadoacl.vista.FRM_Factura;
 
 /**
  *
@@ -26,9 +25,9 @@ import ucr.ac.cr.supermercadoacl.vista.FRM_Factura;
 public class ManejadorCaja implements ActionListener, MouseListener{
     //Atributos y Referencias
     private Factura factura;
-    private Producto producto;
+    private Producto producto, productoLista;
     private int idFactura;
-    private final Random nRandom= new Random(1000+1);
+    private final Random nRandom= new Random();
     private final ArregloCaja listaFactura;
     private final ArregloBodega listaProductos;
     private final PanelDatosCaja panelFactura;
@@ -80,11 +79,13 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 
                 //El producto se actualiza en el MouseClicked
                 String productoVerificado=this.panelFactura.verificarProducto(producto);
+                
                 if(this.producto!= null){
                     
                     if(productoVerificado.equalsIgnoreCase("Autorizado")){
                         
-                        this.listaProductos.ventaProducto(producto, this.panelFactura.getCantidad());
+                        this.listaProductos.ventaProducto(producto, this.panelFactura.getCantidad());   
+                        
                         this.panelFactura.setTotal(producto);
                         this.producto= null;
                         
@@ -117,7 +118,6 @@ public class ManejadorCaja implements ActionListener, MouseListener{
             
             case "Limpiar Factura":
                 
-                this.panelFactura.limpiarCampos();
                 this.panelFactura.limpiarFactura();
                 this.listaProductos.cierreDeCaja();
                 
@@ -131,8 +131,8 @@ public class ManejadorCaja implements ActionListener, MouseListener{
             
             case "Cerrar":
                 
-                this.listaProductos.cierreDeCaja();
                 this.fRM_Caja.dispose();
+                this.listaProductos.cierreDeCaja();
                 
             break;
             
@@ -146,7 +146,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
         
         do{
             
-            this.idFactura=nRandom.nextInt();
+            this.idFactura=nRandom.nextInt(1000+1);
             
         } while (this.listaFactura.buscarFactura(idFactura)!= null);
         

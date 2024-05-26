@@ -19,10 +19,8 @@ import ucr.ac.cr.supermercadoacl.vista.FRM_Menu;
  */
 public class ManejadorMenu implements ActionListener{
     //Atributos y Referencias
-    private final FRM_Menu fRM_Menu;
+    private final  FRM_Menu fRM_Menu;
     private final ArregloEmpleado arregloEmpleado;
-    private final ArregloBodega arregloProductos;
-    private final ArregloCaja arregloFactura;
     private ManejadorEmpleado manejadorEmpleado;
     private ManejadorBodega manejadorProductos;
     private ManejadorCaja manejadorFactura;
@@ -32,9 +30,6 @@ public class ManejadorMenu implements ActionListener{
         
         this.fRM_Menu= new FRM_Menu();
         this.arregloEmpleado= new ArregloEmpleado();
-        this.arregloProductos= new ArregloBodega();
-        this.arregloFactura= new ArregloCaja();
-        
         this.fRM_Menu.setEscuchadores(this);
         this.fRM_Menu.setVisible(true);
     }
@@ -87,7 +82,7 @@ public class ManejadorMenu implements ActionListener{
             
             case "Bodega":
                 
-                this.manejadorProductos= new ManejadorBodega(this.arregloProductos);
+                this.manejadorProductos= new ManejadorBodega(new ArregloBodega());
                 
             break;
             //------------------------------------------------------------------
@@ -95,8 +90,8 @@ public class ManejadorMenu implements ActionListener{
             case "Caja":
                 this.empleado=this.arregloEmpleado.esEmpleado(empleado);
                 
-                this.manejadorFactura= new ManejadorCaja(this.arregloFactura,
-                    this.arregloProductos, this.empleado);
+                this.manejadorFactura= new ManejadorCaja (new ArregloCaja(),
+                    new ArregloBodega(), this.empleado);
                 
             break;
             //------------------------------------------------------------------

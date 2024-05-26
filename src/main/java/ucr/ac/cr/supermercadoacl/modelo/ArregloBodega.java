@@ -194,6 +194,7 @@ public class ArregloBodega {
     //Metodo para cada vez que se cancela una factura o se cierra la caja
     public void cierreDeCaja (){
         
+        this.listaProductos.clear();
         this.listaProductos=this.complementoJSON.cargarJSON(filePath);
         
     }

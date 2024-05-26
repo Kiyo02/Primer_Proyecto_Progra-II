@@ -17,7 +17,8 @@ import ucr.ac.cr.supermercadoacl.modelo.Producto;
  */
 public class PanelDatosCaja extends javax.swing.JPanel {
     private double total;
-    private String listaProductos;
+    private String listaProductos="Producto ";
+    private Producto productoFact;
     private ArrayList <Producto> listaProd= new ArrayList<>();
     //--------------------------------------------------------------------------
     
@@ -45,7 +46,9 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     public Factura getFactura (int idFactura){
         this.jtTotal.setText("0");
         
-        if (this.verificarCampos()!=true){
+        //this.listaProductos=
+        
+        if (this.verificarLista()!=true){
             return new Factura (idFactura, jtEmpleado.getText(), 
                 this.listaProductos, this.total);
         }
@@ -74,11 +77,14 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     public void setTotal(Producto producto){
         
         this.total+=(producto.getPrecioVenta()*Integer.parseInt(jtCantidad.getText()));
-        this.listaProductos+="producto "+this.jtProducto.getText()+
-            ", cantidad "+ this.jtCantidad.getText()+ " --- ";
-        this.listaProd.add(producto);
-
         this.jtTotal.setText(String.valueOf(total));
+        
+        //Se modifica la cantidad usando las existencias ya que es un producto temporal
+        this.productoFact= producto;
+        this.productoFact.setExistencias(Integer.parseInt(jtCantidad.getText()));
+        this.listaProd.add(productoFact);
+
+        
         this.jbGenerarFact.setEnabled(true);
         this.jbLimpiar.setEnabled(true);
         this.jbEditar.setEnabled(true);
@@ -88,7 +94,17 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
 
-    //Limpiar los JTextField
+    public void limpiarFactura (){
+        
+        this.total= 0;
+        this.listaProductos="Producto";
+        this.listaProd.clear();
+        this.jtTotal.setText("");
+        
+        this.limpiarCampos();
+        
+    }
+    
     public void limpiarCampos (){
         
         this.jtCantidad.setText("");
@@ -104,7 +120,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
-    public ArrayList getFacturaTemp (){
+    public ArrayList<Producto> getFacturaTemp (){
         
         return listaProd;
     }
@@ -115,13 +131,22 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         
     }
     
-    public void limpiarFactura (){
+    public String rellenarLista (){
+        String lista= "Producto ";
+        if (this.listaProd!= null){
+            
+            for (Producto producto : listaProd) {
+                
+                lista+=producto.getNombreProducto()+
+                    ", Cantidad "+producto.getExistencias()+
+                    ", Total "+ producto.getPrecioVenta()*producto.getExistencias();
+                
+            }
+            
+            return lista;
+        }
         
-        this.total= 0;
-        this.listaProductos= "Lista de productos: ";
-        
-        this.limpiarCampos();
-        
+        return "";
     }
     //--------------------------------------------------------------------------
     
@@ -239,14 +264,14 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
-    public boolean verificarCampos (){
+    public boolean verificarLista (){
         
         try {
 
             if (this.listaProductos.isEmpty() || this.jtEmpleado.getText().isEmpty() ||
-                this.jtProducto.getText().isEmpty() || this.jtTotal.getText().isEmpty()){
+                this.total==0){
                 
-                throw new NullPointerException("Hay espacios por rellenar");
+                throw new NullPointerException("No hay productos registrados een la factura");
                 
             }
                 
@@ -261,23 +286,22 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         return false;
     }
     
-    public String verificarProducto (Producto producto){
-        if (Integer.parseInt(this.jtCantidad.getText())>= 0){
-            
-            if (producto.getExistencias()>= Integer.parseInt(this.jtCantidad.getText())){
-            
-                return "Autorizado";
-            
+    public String verificarProducto(Producto producto) {
+        try {
+            if (Integer.parseInt(this.jtCantidad.getText()) >= 0) {
+                if (producto.getExistencias() >= Integer.parseInt(this.jtCantidad.getText())) {
+                    return "Autorizado";
+                } else {
+                    return "La cantidad deseada supera las existencias del producto";
+                }
             } else {
-                
-                return "La cantidad deseada supera las existencias del producto";
-                
+                return "La cantidad debe ser un número positivo";
             }
-            
+        } catch (NumberFormatException e) {
+            return "Digite una numeración correcta";
         }
-        
-        return "Numeración no disponible";
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

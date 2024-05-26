@@ -25,8 +25,9 @@ public class ManejadorFactura implements ActionListener, MouseListener{
     private PanelDatosCaja panelDatosCaja;
     private Producto producto;
 
-    public ManejadorFactura(ArrayList productosFactura) {
+    public ManejadorFactura(ArrayList<Producto> productosFactura) {
         this.frm_Factura= new FRM_Factura();
+        this.arregloProductos= new ArregloBodega();
         this.listaProductos= productosFactura;
         this.frm_Factura.setDataTable(arregloProductos.getMatrizProductosTemp(listaProductos), Producto.TITULOS_PRODUCTOS_FACTURA);
         
@@ -97,7 +98,7 @@ public class ManejadorFactura implements ActionListener, MouseListener{
         productoSeleccionado.setNombreProducto(this.frm_Factura.getRow()[1]);
         productoSeleccionado.setTipoProducto(this.frm_Factura.getRow()[2]);
         
-        this.frm_Factura.setProducto(producto);
+        this.frm_Factura.setProducto(productoSeleccionado);
         this.frm_Factura.activarBotones(true);
 
     }
