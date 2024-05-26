@@ -137,7 +137,7 @@ public class ManejadorBodega implements ActionListener, MouseListener{
         this.panelProducto.limpiarCampos();
         
         Producto productoSeleccionado= new Producto();
-        
+
         productoSeleccionado.setIdProducto(this.fRM_Reporte.getRow()[0]);
         productoSeleccionado.setNombreProducto(this.fRM_Reporte.getRow()[1]);
         productoSeleccionado.setTipoProducto(this.fRM_Reporte.getRow()[2]);

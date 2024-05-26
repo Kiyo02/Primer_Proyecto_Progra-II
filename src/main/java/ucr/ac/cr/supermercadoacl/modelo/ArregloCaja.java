@@ -65,6 +65,23 @@ public class ArregloCaja {
     }
     //--------------------------------------------------------------------------
     
+    //Metodo para asignar datos a la tabla de la factura
+    public String[][] getMatrizFacturaTemp (ArrayList<Producto> listaProductos){
+        String[][] matrizFacturaTemp= new String[listaProductos.size()][Producto.TITULOS_PRODUCTOS_FACTURA.length];
+        
+        for (int f=0; f<matrizFacturaTemp.length; f++){
+            for (int c=0; c<matrizFacturaTemp[0].length; c++){
+                
+                matrizFacturaTemp[f][c]=listaProductos.get(f).getDatosProductosFactura(c);
+
+                
+            }
+        }
+        
+        return matrizFacturaTemp;
+    }
+    //--------------------------------------------------------------------------
+    
     
     //************************************************************************//
     //--------------------Metodos Complementarios-----------------------------//

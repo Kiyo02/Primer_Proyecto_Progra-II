@@ -14,6 +14,7 @@ public class Producto {
     private int existencias, cantidadLimite;
     private double precioCompra, precioVenta;
     public static final String [] TITULOS_PRODUCTOS={"ID Producto", "Nombre Producto", "Tipo Producto", "Provedor", "Existencias", "Cantidad Limite", "Precio Compra", "Precio Venta"};
+    public static final String [] TITULOS_PRODUCTOS_FACTURA={"ID Producto", "Cantidad", "Precio Unidad"};
     //--------------------------------------------------------------------------
     
     //Contructor
@@ -29,10 +30,20 @@ public class Producto {
         this.precioVenta = precioVenta;
     }
     
+    //Contructor para modulo de factura
+    public Producto (String idProducto, int cantidad, double precio){
+        
+        this.idProducto= idProducto;
+        this.existencias= cantidad;
+        this.precioVenta= precio;
+        
+    }
+    
     //Contructor vacio
     public Producto() {
     
     }
+    
     //--------------------------------------------------------------------------
     
     //Metodo para la constante
@@ -61,6 +72,22 @@ public class Producto {
                 return String.valueOf(this.precioCompra);
             
             case 7:
+                return String.valueOf(this.precioVenta);
+        }
+        
+        return ""; 
+    }
+    
+    public String getDatosProductosFactura (int columna){
+        
+        switch (columna){
+            case 0:
+                return this.idProducto;
+            
+            case 1:
+                return String.valueOf(this.existencias);
+            
+            case 2:
                 return String.valueOf(this.precioVenta);
         }
         
