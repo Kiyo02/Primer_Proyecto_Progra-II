@@ -14,8 +14,6 @@ import ucr.ac.cr.supermercadoacl.modelo.Producto;
  * @author Axely
  */
 public class PanelDatosCaja extends javax.swing.JPanel {
-
-    private Producto productoFactura;
     //--------------------------------------------------------------------------
     
     /**
@@ -73,17 +71,14 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     
     public Producto getProducto(Producto producto){
         
-        //Se modifica la cantidad usando las existencias ya que es un producto temporal
-        this.productoFactura= producto;
-        this.productoFactura.setExistencias(Integer.parseInt(this.jtCantidad.getText()));
-        
         this.jbGenerarFact.setEnabled(true);
         this.jbLimpiar.setEnabled(true);
         this.jbEditar.setEnabled(true);
         this.jbAgregarProd.setEnabled(false);
         
-        this.limpiarCampos();   
-        return productoFactura;
+        //Se modifica la cantidad usando las existencias ya que es un producto temporal
+        return new Producto(producto.getIdProducto(), this.jtProducto.getText(),
+            Integer.parseInt(this.jtCantidad.getText()), producto.getPrecioVenta());
     }
     //--------------------------------------------------------------------------
 

@@ -26,7 +26,7 @@ import java.util.Random;
 public class ManejadorCaja implements ActionListener, MouseListener{
     //Atributos y Referencias
     private Factura factura;
-    private Producto producto, productoLista;
+    private Producto producto, productoFact;
     private int idFactura;
     private final Random nRandom= new Random();
     private final ArregloCaja listaFactura;
@@ -82,15 +82,18 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 //El producto se actualiza en el MouseClicked
                 String productoVerificado=this.panelFactura.verificarProducto(producto);
                 
+                
                 if(this.producto!= null){
                     
                     if(productoVerificado.equalsIgnoreCase("Autorizado")){
                         
                         this.listaProductos.ventaProducto(producto, this.panelFactura.getCantidad());
                         
-                        this.productosFactura.add(this.panelFactura.getProducto(producto));
+                        this.productoFact= this.panelFactura.getProducto(producto);
+                        this.productosFactura.add(productoFact);
                         this.productosFactura=this.listaProductos.editarLista(productosFactura);
                         this.panelFactura.setTotal(this.listaProductos.getTotal(this.productosFactura));
+                        this.panelFactura.limpiarCampos();
                         this.producto= null;
                         
                     }else{
@@ -122,6 +125,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
             
             case "Limpiar Factura":
                 
+                this.productosFactura.clear();
                 this.panelFactura.limpiarFactura();
                 this.listaProductos.cierreDeCaja();
                 
@@ -129,7 +133,13 @@ public class ManejadorCaja implements ActionListener, MouseListener{
             
             case "Editar Factura":
                 
-                this.manejadorFactura= new ManejadorFactura(this.productosFactura);
+                if (this.productosFactura!= null){
+                    
+                    this.manejadorFactura= new ManejadorFactura(this.productosFactura);
+                } else {
+                    
+                    FRM_Caja.getMensaje("No hay una lista de productos para editar");
+                }
                 
             break;
             

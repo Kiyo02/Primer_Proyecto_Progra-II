@@ -185,22 +185,21 @@ public class ArregloBodega {
     //--------------------------------------------------------------------------
     
     public ArrayList <Producto> editarLista (ArrayList <Producto> listaProductos){
-        ArrayList <Producto> listaEditada= listaProductos;
+        ArrayList<Producto> listaEditada = new ArrayList<>(listaProductos);
         int nuevasExistencias;
         Producto productoLista;
         
-        if (listaEditada!= null){
             
-            for (int i=0; i<listaEditada.size(); i++) {
-                productoLista=listaEditada.get(i);
+        for (int i=0; i<listaEditada.size(); i++) {
+            productoLista=listaEditada.get(i);
 
-                for (int c=0; c<listaEditada.size(); c++){
-
-                    if (listaProductos.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
+            for (int c=0; c<listaEditada.size(); c++){
+                
+                if (listaEditada.get(i)!= null && listaEditada.get(c)!= null){
+                    if (i!=c && listaProductos.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
 
                         nuevasExistencias=listaProductos.get(c).getExistencias()+productoLista.getExistencias();
                         productoLista.setExistencias(nuevasExistencias);
-                        listaProductos.remove(c);
                         listaProductos.remove(i);
                         listaProductos.add(productoLista);
                         return listaEditada;
@@ -208,8 +207,8 @@ public class ArregloBodega {
                     }
                 }
             }
-            
         }
+            
         return listaEditada;
     }
     
