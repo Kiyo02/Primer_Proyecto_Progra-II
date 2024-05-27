@@ -128,6 +128,22 @@ public class ArregloBodega {
         return matrizFacturaTemp;
     }
     
+    public ArrayList <Producto> eliminarProducto (ArrayList listaProductos, Producto producto){
+        ArrayList<Producto> listaEditar=listaProductos;
+        
+        for (Producto miProducto : listaEditar) {
+            
+            if (miProducto.getIdProducto().equalsIgnoreCase(producto.getIdProducto())){
+                
+                listaEditar.remove(miProducto);
+                return listaEditar;
+                
+            }
+            
+        }
+        
+        return listaEditar;
+    }
     public ArrayList <Producto> editarListaProductos (ArrayList listaProductos, Producto producto){
         ArrayList<Producto> listaEditar=listaProductos;
         
@@ -194,19 +210,19 @@ public class ArregloBodega {
         int tamanio=listaEditada.size();
         
         if(tamanio>1){
-            for (int i=0; i<listaEditada.size(); i++) {
+            for (int i=0; i<listaProductos.size(); i++) {
                 productoLista=listaEditada.get(i);
 
-                for (int c=1; c<listaEditada.size(); c++){
+                for (int c=1; c<listaProductos.size(); c++){
 
                     if (listaEditada.get(i)!= null && listaEditada.get(c)!= null){
-                        if (i!=c && listaProductos.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
+                        if (i!=c && listaEditada.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
 
-                            nuevasExistencias=listaProductos.get(c).getExistencias()+productoLista.getExistencias();
+                            nuevasExistencias=listaEditada.get(c).getExistencias()+productoLista.getExistencias();
                             productoLista.setExistencias(nuevasExistencias);
-                            listaProductos.remove(i);
-                            listaProductos.remove(c);
-                            listaProductos.add(productoLista);
+                            listaEditada.remove(listaEditada.get(i));
+                            listaEditada.remove(listaEditada.get(c-1));
+                            listaEditada.add(productoLista);
                             return listaEditada;
 
                         }

@@ -72,7 +72,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                     
                 }else{
                     
-                    FRM_Caja.getMensaje("Llene todos los espacios para continuar");
+                    FRM_Caja.getMensaje("Factura vacía");
                     
                 }
                 

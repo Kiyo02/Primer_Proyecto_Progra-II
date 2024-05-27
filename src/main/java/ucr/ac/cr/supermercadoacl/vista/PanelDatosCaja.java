@@ -38,11 +38,18 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     //--------------------------------------------------------------------------
     
     public Factura getFactura (int idFactura, String listaProductos){
-        double total=Double.parseDouble(this.jtTotal.getText());
-        this.jtTotal.setText("0");
-        return new Factura (idFactura, jtEmpleado.getText(), 
-            listaProductos, total);
         
+        double total=Double.parseDouble(this.jtTotal.getText());
+        
+        if (this.verificarFactura(listaProductos, total)!= false){
+            
+            this.jtTotal.setText("0");
+            return new Factura (idFactura, jtEmpleado.getText(), 
+                listaProductos, total);
+            
+        }
+        
+        return null;
     }
     //--------------------------------------------------------------------------
 
@@ -223,27 +230,15 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
-//    public boolean verificarLista (String listaProductos){
-//        
-//        try {
-//
-//            if (this.listaProductos.isEmpty() || this.jtEmpleado.getText().isEmpty() ||
-//                this.total==0){
-//                
-//                throw new NullPointerException("No hay productos registrados een la factura");
-//                
-//            }
-//                
-//        } catch (NullPointerException e) {
-//
-//            // Manejar la excepción de campos nulos
-//            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-//            return true;
-//
-//        }
-//        
-//        return false;
-//    }
+    private boolean verificarFactura (String listaProductos, double total){
+        
+        if (listaProductos.equalsIgnoreCase("Producto ") && total== 0){
+            
+            return false;
+        }
+        
+        return true;
+    }
     
     public String verificarProducto(Producto producto) {
         

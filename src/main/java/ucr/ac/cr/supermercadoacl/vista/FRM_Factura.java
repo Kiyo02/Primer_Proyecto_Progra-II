@@ -62,6 +62,7 @@ public class FRM_Factura extends javax.swing.JFrame{
     
     public void limpiarCampos (){
         
+        this.jtNombre.setText("");
         this.jtCantidad.setText("");
         this.jtID.setText("");
         this.jtPrecio.setText("");
