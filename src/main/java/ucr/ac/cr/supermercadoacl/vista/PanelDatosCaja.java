@@ -38,9 +38,8 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     //--------------------------------------------------------------------------
     
     public Factura getFactura (int idFactura, String listaProductos){
-        this.jtTotal.setText("0");
         double total=Double.parseDouble(this.jtTotal.getText());
-        
+        this.jtTotal.setText("0");
         return new Factura (idFactura, jtEmpleado.getText(), 
             listaProductos, total);
         
@@ -99,7 +98,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     public void activarBotones (boolean estado){
         
         this.jbAgregarProd.setEnabled(estado);
-        this.jbLimpiar.setEnabled(estado);    
+        this.jbLimpiar.setEnabled(estado);
     }
     //--------------------------------------------------------------------------
     
@@ -113,6 +112,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         this.jbProductos.addActionListener(manejador);
         this.jbLimpiar.addActionListener(manejador);
         this.jbEditar.addActionListener(manejador);
+        this.jbActualizar.addActionListener(manejador);
     }
     //--------------------------------------------------------------------------
     
@@ -142,6 +142,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jbLimpiar = new javax.swing.JButton();
         jbEditar = new javax.swing.JButton();
+        jbActualizar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -215,6 +216,10 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jbEditar.setEnabled(false);
         add(jbEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 60, 130, -1));
 
+        jbActualizar.setText("Actaulizar Fact.");
+        jbActualizar.setActionCommand("Actualizar Fact");
+        add(jbActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
+
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
@@ -266,6 +271,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbAgregarProd;
     private javax.swing.JButton jbCerrar;
     private javax.swing.JButton jbEditar;

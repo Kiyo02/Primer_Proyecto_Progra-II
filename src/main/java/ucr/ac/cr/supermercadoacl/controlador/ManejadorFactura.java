@@ -11,6 +11,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import ucr.ac.cr.supermercadoacl.modelo.ArregloBodega;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
+import ucr.ac.cr.supermercadoacl.vista.FRM_Caja;
 import ucr.ac.cr.supermercadoacl.vista.FRM_Factura;
 import ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja;
 

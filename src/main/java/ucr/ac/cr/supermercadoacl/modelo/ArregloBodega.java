@@ -172,7 +172,8 @@ public class ArregloBodega {
         Producto productoBuscado= this.buscarProducto(producto.getIdProducto());
         
         if (productoBuscado!= null){
-
+            
+            producto=productoBuscado;
             producto.setExistencias(productoBuscado.getExistencias()-cantidad);
             this.listaProductos.remove(productoBuscado);
             this.listaProductos.add(producto);
@@ -184,26 +185,31 @@ public class ArregloBodega {
     }
     //--------------------------------------------------------------------------
     
+    //Metodo que se utiliza cada vez que se agrega un producto a la factura
+    //Verifica si hay poductos iguales y suma las cantidades y unifica el producto
     public ArrayList <Producto> editarLista (ArrayList <Producto> listaProductos){
         ArrayList<Producto> listaEditada = new ArrayList<>(listaProductos);
         int nuevasExistencias;
         Producto productoLista;
+        int tamanio=listaEditada.size();
         
-            
-        for (int i=0; i<listaEditada.size(); i++) {
-            productoLista=listaEditada.get(i);
+        if(tamanio>1){
+            for (int i=0; i<listaEditada.size(); i++) {
+                productoLista=listaEditada.get(i);
 
-            for (int c=0; c<listaEditada.size(); c++){
-                
-                if (listaEditada.get(i)!= null && listaEditada.get(c)!= null){
-                    if (i!=c && listaProductos.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
+                for (int c=1; c<listaEditada.size(); c++){
 
-                        nuevasExistencias=listaProductos.get(c).getExistencias()+productoLista.getExistencias();
-                        productoLista.setExistencias(nuevasExistencias);
-                        listaProductos.remove(i);
-                        listaProductos.add(productoLista);
-                        return listaEditada;
+                    if (listaEditada.get(i)!= null && listaEditada.get(c)!= null){
+                        if (i!=c && listaProductos.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
 
+                            nuevasExistencias=listaProductos.get(c).getExistencias()+productoLista.getExistencias();
+                            productoLista.setExistencias(nuevasExistencias);
+                            listaProductos.remove(i);
+                            listaProductos.remove(c);
+                            listaProductos.add(productoLista);
+                            return listaEditada;
+
+                        }
                     }
                 }
             }

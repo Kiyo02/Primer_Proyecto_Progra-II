@@ -67,6 +67,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                     FRM_Caja.getMensaje(listaFactura.registrarFactura(factura));
                     this.listaProductos.finalizarVenta();
                     this.panelFactura.limpiarFactura();
+                    this.productosFactura.clear();
                     this.producto= null;
                     
                 }else{
@@ -122,6 +123,16 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 
             break;
             
+            case "Actualizar Fact":
+                
+                if(this.productosFactura!= null){
+
+                    this.setListaEditada();
+
+                }
+                
+            break;
+            
             
             case "Limpiar Factura":
                 
@@ -154,6 +165,23 @@ public class ManejadorCaja implements ActionListener, MouseListener{
         
     }
     //--------------------------------------------------------------------------
+    //Este controlador sirve para recibir la lista de productos ya editada
+    public void setListaEditada (){
+        ArrayList <Producto> nuevaLista= new ArrayList<>(this.productosFactura);
+        this.panelFactura.limpiarFactura();
+        this.listaProductos.cierreDeCaja();
+        
+        
+        for (Producto miProducto : nuevaLista) {
+            
+            this.listaProductos.ventaProducto(productoFact, miProducto.getExistencias());
+
+        }
+        
+        this.panelFactura.setTotal(this.listaProductos.getTotal(productosFactura));
+
+    }
+    
     
     //Metodo para generar y verificar un numero random
     public int generarID (){
