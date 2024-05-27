@@ -184,6 +184,65 @@ public class ArregloBodega {
     }
     //--------------------------------------------------------------------------
     
+    public ArrayList <Producto> editarLista (ArrayList <Producto> listaProductos){
+        ArrayList <Producto> listaEditada= listaProductos;
+        int nuevasExistencias;
+        Producto productoLista;
+        
+        if (listaEditada!= null){
+            
+            for (int i=0; i<listaEditada.size(); i++) {
+                productoLista=listaEditada.get(i);
+
+                for (int c=0; c<listaEditada.size(); c++){
+
+                    if (listaProductos.get(c).getIdProducto().equalsIgnoreCase(productoLista.getIdProducto())){
+
+                        nuevasExistencias=listaProductos.get(c).getExistencias()+productoLista.getExistencias();
+                        productoLista.setExistencias(nuevasExistencias);
+                        listaProductos.remove(c);
+                        listaProductos.remove(i);
+                        listaProductos.add(productoLista);
+                        return listaEditada;
+
+                    }
+                }
+            }
+            
+        }
+        return listaEditada;
+    }
+    
+    public String rellenarLista (ArrayList <Producto> listaProductos){
+        String lista= "Producto ";
+        
+        if (this.listaProductos!= null){
+            
+            for (Producto producto : listaProductos) {
+                
+                lista+=producto.getNombreProducto()+
+                    ", Cantidad "+producto.getExistencias()+
+                    ", Total "+ producto.getPrecioVenta()*producto.getExistencias();
+                
+            }
+            
+            return lista;
+        }
+        
+        return null;
+    }
+    
+    public double getTotal (ArrayList <Producto> listaProducto){
+        double total=0;
+        
+        for (Producto miProducto : listaProducto) {
+            
+            total+=miProducto.getExistencias()*miProducto.getPrecioVenta();
+            
+        }
+        
+        return total;
+    }
     //Metodo para cada vez que se finaliza una factura
     public void finalizarVenta (){
         

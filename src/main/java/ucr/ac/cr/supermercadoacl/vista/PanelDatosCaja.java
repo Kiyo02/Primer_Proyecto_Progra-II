@@ -5,8 +5,6 @@
 package ucr.ac.cr.supermercadoacl.vista;
 
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
 import ucr.ac.cr.supermercadoacl.modelo.Factura;
 import ucr.ac.cr.supermercadoacl.modelo.Producto;
@@ -16,10 +14,8 @@ import ucr.ac.cr.supermercadoacl.modelo.Producto;
  * @author Axely
  */
 public class PanelDatosCaja extends javax.swing.JPanel {
-    private double total;
-    private String listaProductos="Producto ";
-    private Producto productoFact;
-    private ArrayList <Producto> listaProd= new ArrayList<>();
+
+    private Producto productoFactura;
     //--------------------------------------------------------------------------
     
     /**
@@ -43,17 +39,13 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
-    public Factura getFactura (int idFactura){
+    public Factura getFactura (int idFactura, String listaProductos){
         this.jtTotal.setText("0");
+        double total=Double.parseDouble(this.jtTotal.getText());
         
-        this.listaProductos=this.rellenarLista();
+        return new Factura (idFactura, jtEmpleado.getText(), 
+            listaProductos, total);
         
-        if (this.verificarLista()!=true){
-            return new Factura (idFactura, jtEmpleado.getText(), 
-                this.listaProductos, this.total);
-        }
-        
-        return null;
     }
     //--------------------------------------------------------------------------
 
@@ -64,89 +56,55 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
+    public void setTotal (double total){
+        
+        this.jtTotal.setText(String.valueOf(total));
+    }
+    //--------------------------------------------------------------------------
+    
     //
     public void setProduto (Producto producto){
         
         
        this.jtProducto.setText(producto.getNombreProducto());
        this.jbAgregarProd.setEnabled(true);
-       
-        
     }
     //--------------------------------------------------------------------------
-    public void setTotal(Producto producto){
-        
-        this.total+=(producto.getPrecioVenta()*Integer.parseInt(jtCantidad.getText()));
-        this.jtTotal.setText(String.valueOf(total));
+    
+    public Producto getProducto(Producto producto){
         
         //Se modifica la cantidad usando las existencias ya que es un producto temporal
-        this.listaProd.add(new Producto(producto.getIdProducto(), this.jtProducto.getText(),
-            Integer.parseInt(this.jtCantidad.getText()),
-                producto.getPrecioVenta()));
-
+        this.productoFactura= producto;
+        this.productoFactura.setExistencias(Integer.parseInt(this.jtCantidad.getText()));
         
         this.jbGenerarFact.setEnabled(true);
         this.jbLimpiar.setEnabled(true);
         this.jbEditar.setEnabled(true);
         this.jbAgregarProd.setEnabled(false);
-        this.limpiarCampos();
         
+        this.limpiarCampos();   
+        return productoFactura;
     }
     //--------------------------------------------------------------------------
 
     public void limpiarFactura (){
         
-        this.total= 0;
-        this.listaProductos="Producto";
-        this.listaProd.clear();
         this.jtTotal.setText("");
-        
-        this.limpiarCampos();
-        
+        this.limpiarCampos();    
     }
+    //--------------------------------------------------------------------------
     
     public void limpiarCampos (){
         
         this.jtCantidad.setText("");
-        this.jtProducto.setText("");
-        
+        this.jtProducto.setText("");    
     }
+    //--------------------------------------------------------------------------
     
     public void activarBotones (boolean estado){
         
         this.jbAgregarProd.setEnabled(estado);
-        this.jbLimpiar.setEnabled(estado);
-        
-    }
-    //--------------------------------------------------------------------------
-    
-    public ArrayList<Producto> getFacturaTemp (){
-        
-        return listaProd;
-    }
-    
-    public void setFacturaTemp (ArrayList listaProductos){
-        
-        this.listaProd= listaProductos;
-        
-    }
-    
-    public String rellenarLista (){
-        String lista= "Producto ";
-        if (this.listaProd!= null){
-            
-            for (Producto producto : listaProd) {
-                
-                lista+=producto.getNombreProducto()+
-                    ", Cantidad "+producto.getExistencias()+
-                    ", Total "+ producto.getPrecioVenta()*producto.getExistencias();
-                
-            }
-            
-            return lista;
-        }
-        
-        return "";
+        this.jbLimpiar.setEnabled(estado);    
     }
     //--------------------------------------------------------------------------
     
@@ -161,7 +119,8 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         this.jbLimpiar.addActionListener(manejador);
         this.jbEditar.addActionListener(manejador);
     }
-
+    //--------------------------------------------------------------------------
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -232,20 +191,20 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jbCerrar.setText("Cerrar");
         add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 80, -1));
 
+        jtTotal.setEditable(false);
         jtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtTotal.setText("0");
-        jtTotal.setEnabled(false);
         add(jtTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 270, -1));
 
         jtCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         add(jtCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 270, -1));
 
+        jtProducto.setEditable(false);
         jtProducto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtProducto.setEnabled(false);
         add(jtProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 270, -1));
 
+        jtEmpleado.setEditable(false);
         jtEmpleado.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtEmpleado.setEnabled(false);
         add(jtEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 270, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
@@ -264,27 +223,27 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
-    public boolean verificarLista (){
-        
-        try {
-
-            if (this.listaProductos.isEmpty() || this.jtEmpleado.getText().isEmpty() ||
-                this.total==0){
-                
-                throw new NullPointerException("No hay productos registrados een la factura");
-                
-            }
-                
-        } catch (NullPointerException e) {
-
-            // Manejar la excepción de campos nulos
-            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-            return true;
-
-        }
-        
-        return false;
-    }
+//    public boolean verificarLista (String listaProductos){
+//        
+//        try {
+//
+//            if (this.listaProductos.isEmpty() || this.jtEmpleado.getText().isEmpty() ||
+//                this.total==0){
+//                
+//                throw new NullPointerException("No hay productos registrados een la factura");
+//                
+//            }
+//                
+//        } catch (NullPointerException e) {
+//
+//            // Manejar la excepción de campos nulos
+//            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+//            return true;
+//
+//        }
+//        
+//        return false;
+//    }
     
     public String verificarProducto(Producto producto) {
         

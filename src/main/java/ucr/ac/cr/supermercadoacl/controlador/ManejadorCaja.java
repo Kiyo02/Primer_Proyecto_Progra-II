@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import ucr.ac.cr.supermercadoacl.modelo.ArregloCaja;
 import ucr.ac.cr.supermercadoacl.modelo.ArregloBodega;
 import ucr.ac.cr.supermercadoacl.modelo.Empleado;
@@ -30,6 +31,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
     private final Random nRandom= new Random();
     private final ArregloCaja listaFactura;
     private final ArregloBodega listaProductos;
+    private ArrayList productosFactura= new ArrayList();
     private final PanelDatosCaja panelFactura;
     private final FRM_Caja fRM_Caja;
     private FRM_Reporte fRM_Reporte;
@@ -58,7 +60,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
             
             case "Generar Factura":
                 
-                this.factura= this.panelFactura.getFactura(this.generarID());
+                this.factura= this.panelFactura.getFactura(this.generarID(), this.listaProductos.rellenarLista(this.productosFactura));
                 
                 if(this.factura!= null){
                     
@@ -84,9 +86,11 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                     
                     if(productoVerificado.equalsIgnoreCase("Autorizado")){
                         
-                        this.listaProductos.ventaProducto(producto, this.panelFactura.getCantidad());   
+                        this.listaProductos.ventaProducto(producto, this.panelFactura.getCantidad());
                         
-                        this.panelFactura.setTotal(producto);
+                        this.productosFactura.add(this.panelFactura.getProducto(producto));
+                        this.productosFactura=this.listaProductos.editarLista(productosFactura);
+                        this.panelFactura.setTotal(this.listaProductos.getTotal(this.productosFactura));
                         this.producto= null;
                         
                     }else{
@@ -125,7 +129,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
             
             case "Editar Factura":
                 
-                this.manejadorFactura= new ManejadorFactura(this.panelFactura.getFacturaTemp());
+                this.manejadorFactura= new ManejadorFactura(this.productosFactura);
                 
             break;
             

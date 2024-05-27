@@ -20,9 +20,9 @@ import ucr.ac.cr.supermercadoacl.vista.PanelDatosCaja;
  */
 public class ManejadorFactura implements ActionListener, MouseListener{
     private final FRM_Factura frm_Factura;
-    private ArregloBodega arregloProductos;
+    private final ArregloBodega arregloProductos;
     private ArrayList <Producto> listaProductos;
-    private PanelDatosCaja panelDatosCaja;
+    private final PanelDatosCaja panelDatosCaja;
     private Producto producto;
 
     public ManejadorFactura(ArrayList<Producto> productosFactura) {
@@ -47,6 +47,8 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Remover Producto":
                 
+                this.producto=this.frm_Factura.getProducto();
+                
                 if(this.producto!= null){
                     
                     this.listaProductos.remove(producto);
@@ -64,6 +66,8 @@ public class ManejadorFactura implements ActionListener, MouseListener{
 
             case "Editar Producto":
                 
+                this.producto=this.frm_Factura.getProducto();
+                
                 if(this.producto!= null){
                     
                     this.listaProductos=this.arregloProductos.editarListaProductos(listaProductos, producto);
@@ -80,7 +84,6 @@ public class ManejadorFactura implements ActionListener, MouseListener{
             
             case "Cerrar":
                 
-                this.panelDatosCaja.setFacturaTemp(this.listaProductos);
                 this.frm_Factura.dispose();
                 
             break;
