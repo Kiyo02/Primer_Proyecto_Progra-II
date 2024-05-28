@@ -25,13 +25,11 @@ public class FRM_Menu extends javax.swing.JFrame {
     public static void getMensaje (String mensaje){
         
         JOptionPane.showMessageDialog(null, mensaje);
-        
     }
     //--------------------------------------------------------------------------
     public Empleado inicioSesion (){
         
         return new Empleado(this.jtUsuario.getText(), String.valueOf(this.jpClave.getPassword()));
-        
     }
     //--------------------------------------------------------------------------
     
@@ -69,6 +67,7 @@ public class FRM_Menu extends javax.swing.JFrame {
     }
     //--------------------------------------------------------------------------
     
+    //ActionListener de los botones
     public void setEscuchadores (ActionListener manejador){
         
         this.jmiBodega.addActionListener(manejador);
@@ -80,6 +79,7 @@ public class FRM_Menu extends javax.swing.JFrame {
         this.jmiCreditos.addActionListener(manejador);
     }
     //--------------------------------------------------------------------------
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

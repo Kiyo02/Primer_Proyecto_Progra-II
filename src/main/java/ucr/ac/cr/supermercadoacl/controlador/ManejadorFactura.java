@@ -60,7 +60,8 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                 }
                 
             break;
-
+            //------------------------------------------------------------------
+            
             case "Editar Producto":
                 
                 this.producto=this.frm_Factura.getProducto();
@@ -78,6 +79,7 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Cerrar":
                 
@@ -85,11 +87,13 @@ public class ManejadorFactura implements ActionListener, MouseListener{
                 this.frm_Factura.dispose();
                 
             break;
-            
-            
-        }
+            //------------------------------------------------------------------
         
-    }
+        }//Fin de Switch
+        //--------------------------------------------------------------------------
+        
+    }//Fin de ActionEvent
+    //--------------------------------------------------------------------------
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -105,7 +109,8 @@ public class ManejadorFactura implements ActionListener, MouseListener{
         this.frm_Factura.activarBotones(true);
 
     }
-
+    //--------------------------------------------------------------------------
+    
     @Override
     public void mousePressed(MouseEvent e) {
         
@@ -125,5 +130,5 @@ public class ManejadorFactura implements ActionListener, MouseListener{
     public void mouseExited(MouseEvent e) {
         
     }
-    
-}
+    //--------------------------------------------------------------------------
+}//Fin de Clase//---------------------------------------------------------------

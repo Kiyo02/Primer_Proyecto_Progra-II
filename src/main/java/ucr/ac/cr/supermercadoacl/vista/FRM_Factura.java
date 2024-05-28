@@ -25,12 +25,13 @@ public class FRM_Factura extends javax.swing.JFrame{
     public FRM_Factura() {
         initComponents();
     }
+    //--------------------------------------------------------------------------
     
     public static void getMensaje (String mensaje){
         
-        JOptionPane.showMessageDialog(null, mensaje);
-        
+        JOptionPane.showMessageDialog(null, mensaje);    
     }
+    //--------------------------------------------------------------------------
     
     public Producto getProducto (){
         
@@ -42,6 +43,7 @@ public class FRM_Factura extends javax.swing.JFrame{
         
         return null;
     }
+    //--------------------------------------------------------------------------
     
     public void setProducto (Producto producto){
         
@@ -52,13 +54,14 @@ public class FRM_Factura extends javax.swing.JFrame{
         this.jtTotal.setText(String.valueOf(producto.getPrecioVenta()*producto.getExistencias()));
         
     }
+    //--------------------------------------------------------------------------
     
     public void activarBotones (boolean estado){
         
         this.jbRemoverProducto.setEnabled(estado);
         this.jbEditar.setEnabled(estado);
-        
     }
+    //--------------------------------------------------------------------------
     
     public void limpiarCampos (){
         
@@ -67,8 +70,8 @@ public class FRM_Factura extends javax.swing.JFrame{
         this.jtID.setText("");
         this.jtPrecio.setText("");
         this.jtTotal.setText("");
-        
     }
+    //--------------------------------------------------------------------------
     
     //Metodo para rellenar la tabla
     public void setDataTable(String[][] data, String []encabezado){
@@ -79,7 +82,6 @@ public class FRM_Factura extends javax.swing.JFrame{
         this.sorter= new TableRowSorter<>(model);
         this.tblFactura.setRowSorter(sorter);
         this.jScrollPane1.setViewportView(this.tblFactura);
-        
     }
     //--------------------------------------------------------------------------
     
@@ -96,21 +98,25 @@ public class FRM_Factura extends javax.swing.JFrame{
         
         return itemSelect;
     }
+    //--------------------------------------------------------------------------
     
+    //MouseListener de los botones
     public void listenMouse (MouseListener controller){
         
         this.tblFactura.addMouseListener(controller);
-        
     }
+    //--------------------------------------------------------------------------
     
+    //ActionListener de los botones
     public void escuchadores (ActionListener manejador){
     
         this.jbCerrar.addActionListener(manejador);
         this.jbEditar.addActionListener(manejador);
         this.jbRemoverProducto.addActionListener(manejador);
-        
     }
+    //--------------------------------------------------------------------------
     
+    //Verifica los campos para la extracción del objeto
     public boolean verificarCampos (){
         
         try {
@@ -119,8 +125,7 @@ public class FRM_Factura extends javax.swing.JFrame{
             if (this.jtID.getText().isEmpty() || this.jtCantidad.getText().isEmpty() ||
                 this.jtPrecio.getText().isEmpty() || this.jtTotal.getText().isEmpty()){
                 
-                throw new NullPointerException("Hay espacios por rellenar");
-                
+                throw new NullPointerException("Hay espacios por rellenar");   
             }
             
             try {
@@ -145,7 +150,8 @@ public class FRM_Factura extends javax.swing.JFrame{
         
         return false;
     }
-
+    //--------------------------------------------------------------------------
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

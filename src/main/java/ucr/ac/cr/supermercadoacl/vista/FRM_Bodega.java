@@ -21,7 +21,6 @@ public class FRM_Bodega extends javax.swing.JFrame {
     public static void getMensaje (String mensaje){
         
         JOptionPane.showMessageDialog(null, mensaje);
-         
     }
     //--------------------------------------------------------------------------
     
@@ -30,6 +29,7 @@ public class FRM_Bodega extends javax.swing.JFrame {
     }
     //--------------------------------------------------------------------------
     
+    //ActionListener de los botones
     public void setEscuchadores(ActionListener manejador){
         
         this.panelDatosProducto1.escuchador(manejador);

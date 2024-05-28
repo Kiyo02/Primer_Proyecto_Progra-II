@@ -22,6 +22,7 @@ public class FRM_Reporte extends javax.swing.JFrame {
     public FRM_Reporte() {
         initComponents();
     }
+    //--------------------------------------------------------------------------
     
     //Metodo para rellenar la tabla
     public void setDataTable(String[][] data, String []encabezado){
@@ -50,6 +51,7 @@ public class FRM_Reporte extends javax.swing.JFrame {
         return itemSelect;
     }
     
+    //MouseListener de los botones
     public void listenMouse (MouseListener controller){
         
         this.tblReporte.addMouseListener(controller);

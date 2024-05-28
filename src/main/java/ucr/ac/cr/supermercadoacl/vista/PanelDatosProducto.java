@@ -21,6 +21,7 @@ public class PanelDatosProducto extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
+    //Metodo para extraer el crear el objeto extrayendo los datos del panel
     public Producto getProducto (){
         
         if (this.verificarCampos()!=true){
@@ -35,7 +36,8 @@ public class PanelDatosProducto extends javax.swing.JPanel {
         return null;
     }
     //--------------------------------------------------------------------------
-     
+    
+    //Metodo para mostrar el objeto seleccionado
     public void setProducto (Producto producto){
         
         this.jtIdProduc.setText(producto.getIdProducto());
@@ -50,6 +52,7 @@ public class PanelDatosProducto extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
+    //Metodo para limpiar campos
     public void limpiarCampos (){
         
         this.jtIdProduc.setText("");
@@ -64,12 +67,26 @@ public class PanelDatosProducto extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
+    //Metodo para solicitar la cantidad para el nuevo stock
     public int nuevoStock (){
+        int cantidad;
         
-        return Integer.parseInt(JOptionPane.showInputDialog("Digite la cantidad del nuevo stock"));
+        try{
+            cantidad=Integer.parseInt(JOptionPane.showInputDialog(
+                "Digite la cantidad del nuevo stock"));
+            
+        } catch (NumberFormatException e){
+            
+            JOptionPane.showMessageDialog(null, 
+            "Error: Digite un valor numerico en los campos correspondientes");
+            return 0;
+            
+        }
         
+        return cantidad;
     }
     //--------------------------------------------------------------------------
+
     
     public void activarBotones (boolean estado){
         
@@ -87,6 +104,7 @@ public class PanelDatosProducto extends javax.swing.JPanel {
     }
     //--------------------------------------------------------------------------
     
+    //ActionListener de los botones
     public void escuchador(ActionListener manejador){
         
         this.jbAExistencias.addActionListener(manejador);       
@@ -252,6 +270,7 @@ public class PanelDatosProducto extends javax.swing.JPanel {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/supermarket0.1.png"))); // NOI18N
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 350));
     }// </editor-fold>//GEN-END:initComponents
+    //Verifica los campos para la extracción del objeto
     public boolean verificarCampos (){
         
         try {
@@ -292,7 +311,7 @@ public class PanelDatosProducto extends javax.swing.JPanel {
         
         return false;
     }
-
+    //--------------------------------------------------------------------------
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

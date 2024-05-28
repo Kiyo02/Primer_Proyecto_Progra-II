@@ -18,7 +18,6 @@ public class ArregloCaja {
     //--------------------------------------------------------------------------
     
     //Contructor
-
     public ArregloCaja() {
         this.complementoJSON= new JSON();
         this.listaFactura= this.complementoJSON.cargarJSON(filePath);

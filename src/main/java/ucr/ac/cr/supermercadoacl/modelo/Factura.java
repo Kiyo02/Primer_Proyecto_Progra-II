@@ -91,5 +91,4 @@ public class Factura {
         return "idFactura=" + idFactura + ", nombreEmpleado=" + nombreEmpleado + ", nombreProducto=" + nombreProducto + ", total=" + total;
     }
     //--------------------------------------------------------------------------
-    
-}
+}//Fin de Clase//---------------------------------------------------------------

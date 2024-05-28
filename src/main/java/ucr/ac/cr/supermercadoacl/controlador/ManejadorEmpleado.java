@@ -112,6 +112,7 @@ public class ManejadorEmpleado implements ActionListener, MouseListener{
                 
             break;
             //------------------------------------------------------------------
+            
         }//Fin del Switch
         //----------------------------------------------------------------------
         
@@ -154,7 +155,6 @@ public class ManejadorEmpleado implements ActionListener, MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
         
-    }//Fin de listenMouse
+    }
     //--------------------------------------------------------------------------
-    
-}//Fin de clase
+}//Fin de clase//---------------------------------------------------------------

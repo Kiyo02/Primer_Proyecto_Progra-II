@@ -28,6 +28,7 @@ public class JSON {
         lista= new ArrayList<>();
         
     }
+    //--------------------------------------------------------------------------
     
     //Añadir al respectivo archivo JSON un objeto
     public void archivoJSON (Object Objeto, String ruta){
@@ -208,5 +209,5 @@ public class JSON {
         }
         return lista;
     }
-    
-}//Fin de clase
+    //--------------------------------------------------------------------------
+}//Fin de clase//---------------------------------------------------------------

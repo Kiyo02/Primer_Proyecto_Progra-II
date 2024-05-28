@@ -21,10 +21,10 @@ import ucr.ac.cr.supermercadoacl.vista.PanelDatosProducto;
 public class ManejadorBodega implements ActionListener, MouseListener{
     //Atributos y Referencias
     private Producto producto;
-    private ArregloBodega arregloProducto;
+    private final ArregloBodega arregloProducto;
     private FRM_Reporte fRM_Reporte;
-    private PanelDatosProducto panelProducto;
-    private FRM_Bodega frm_Productos;
+    private final PanelDatosProducto panelProducto;
+    private final FRM_Bodega frm_Productos;
     //--------------------------------------------------------------------------
     
     //Contructor
@@ -57,6 +57,7 @@ public class ManejadorBodega implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Editar":
                 
@@ -75,6 +76,7 @@ public class ManejadorBodega implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Remover":
                 
@@ -93,6 +95,7 @@ public class ManejadorBodega implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Agregar":
                 
@@ -110,6 +113,7 @@ public class ManejadorBodega implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Productos":
                 
@@ -119,16 +123,19 @@ public class ManejadorBodega implements ActionListener, MouseListener{
                 this.fRM_Reporte.setVisible(true);
                 
             break;
+            //------------------------------------------------------------------
             
             case "Cerrar":
                 
                 this.frm_Productos.dispose();
                 
             break;
+            //------------------------------------------------------------------
             
-        }
-        
-    }
+        }//Fin de Switch
+        //----------------------------------------------------------------------
+    
+    }//Fin de ActionEvent
     //--------------------------------------------------------------------------
     
     //ListenMouse para la tabla de reporte
@@ -151,7 +158,8 @@ public class ManejadorBodega implements ActionListener, MouseListener{
         this.panelProducto.activarBotones(true);
         this.fRM_Reporte.dispose();
     }
-
+    //--------------------------------------------------------------------------
+    
     @Override
     public void mousePressed(MouseEvent e) {
         
@@ -172,5 +180,4 @@ public class ManejadorBodega implements ActionListener, MouseListener{
         
     }
     //--------------------------------------------------------------------------
- 
-}
+}//Fin de Clase//---------------------------------------------------------------

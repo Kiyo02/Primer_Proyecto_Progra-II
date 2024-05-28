@@ -25,15 +25,12 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     //--------------------------------------------------------------------------
     
     public void setTurnoEmpleado (Empleado turnoEmpleado){
-        
         this.jtEmpleado.setText(turnoEmpleado.getNombreEmpleado());
         
         if(turnoEmpleado.getPuesto().equalsIgnoreCase("Gerente")){
             
             this.jbFacturas.setEnabled(true);
-            
         }
-        
     }
     //--------------------------------------------------------------------------
     
@@ -68,7 +65,6 @@ public class PanelDatosCaja extends javax.swing.JPanel {
     
     //
     public void setProduto (Producto producto){
-        
         
        this.jtProducto.setText(producto.getNombreProducto());
        this.jbAgregarProd.setEnabled(true);
@@ -230,6 +226,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Cajero1.png"))); // NOI18N
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 530, 290));
     }// </editor-fold>//GEN-END:initComponents
+    //Verifica los campos para la extracción del objeto
     private boolean verificarFactura (String listaProductos, double total){
         
         if (listaProductos.equalsIgnoreCase("Producto ") && total== 0){
@@ -239,7 +236,9 @@ public class PanelDatosCaja extends javax.swing.JPanel {
         
         return true;
     }
+    //--------------------------------------------------------------------------
     
+    //Verifica los campos para la extracción del objeto
     public String verificarProducto(Producto producto) {
         
         try {
@@ -257,7 +256,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
             return "Digite una numeración correcta";
         }
     }
-
+    //--------------------------------------------------------------------------
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

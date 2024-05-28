@@ -233,6 +233,7 @@ public class ArregloBodega {
             
         return listaEditada;
     }
+    //--------------------------------------------------------------------------
     
     public String rellenarLista (ArrayList <Producto> listaProductos){
         String lista= "Producto ";
@@ -252,6 +253,7 @@ public class ArregloBodega {
         
         return null;
     }
+    //--------------------------------------------------------------------------
     
     public double getTotal (ArrayList <Producto> listaProducto){
         double total=0;
@@ -264,6 +266,8 @@ public class ArregloBodega {
         
         return total;
     }
+    //--------------------------------------------------------------------------
+    
     //Metodo para cada vez que se finaliza una factura
     public void finalizarVenta (){
         

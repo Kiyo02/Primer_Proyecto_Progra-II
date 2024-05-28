@@ -19,25 +19,27 @@ public class FRM_Empleado extends javax.swing.JFrame {
     public FRM_Empleado() {
         initComponents();
     }
+    //--------------------------------------------------------------------------
     
     public static void getMensaje (String mensaje){
         
         JOptionPane.showMessageDialog(null, mensaje);
-        
     }
+    //--------------------------------------------------------------------------
     
     public PanelDatosEmpleado getPanel (){
         
         return panelDatosEmpleado2;
-        
     }
+    //--------------------------------------------------------------------------
     
+    //ActionListener de los botones
     public void setEscuchadores (ActionListener manejador){
         
         this.panelDatosEmpleado2.escuchador(manejador);
-        
     }
-
+    //--------------------------------------------------------------------------
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

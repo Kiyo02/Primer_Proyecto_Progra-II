@@ -18,7 +18,6 @@ public class Producto {
     //--------------------------------------------------------------------------
     
     //Contructor
-
     public Producto(String idProducto, String nombreProducto, String tipoProducto, String provedor, int existencias, int cantidadLimite, double precioCompra, double precioVenta) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
@@ -44,7 +43,6 @@ public class Producto {
     public Producto() {
     
     }
-    
     //--------------------------------------------------------------------------
     
     //Metodo para la constante
@@ -78,6 +76,7 @@ public class Producto {
         
         return ""; 
     }
+    //--------------------------------------------------------------------------
     
     public String getDatosProductosFactura (int columna){
         
@@ -172,4 +171,4 @@ public class Producto {
         return "idProducto=" + idProducto + ", nombreProducto=" + nombreProducto + ", tipoProducto=" + tipoProducto + ", provedor=" + provedor + ", existencias=" + existencias + ", cantidadLimite=" + cantidadLimite + ", precioCompra=" + precioCompra + ", precioVenta=" + precioVenta;
     }
     //--------------------------------------------------------------------------
-}
+}//Fin de Clase//---------------------------------------------------------------

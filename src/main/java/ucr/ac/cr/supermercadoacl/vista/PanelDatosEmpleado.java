@@ -201,6 +201,7 @@ public class PanelDatosEmpleado extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/fondoEmpleados.png"))); // NOI18N
         add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, -1));
     }// </editor-fold>//GEN-END:initComponents
+    //Verifica los campos para la extracción del objeto
     public boolean verificarCampos (){
         
         try {
@@ -238,7 +239,8 @@ public class PanelDatosEmpleado extends javax.swing.JPanel {
         
         return false;
     }
-
+    //--------------------------------------------------------------------------
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

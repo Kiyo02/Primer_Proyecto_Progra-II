@@ -77,6 +77,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Agregar Producto":
                 
@@ -105,6 +106,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Productos":
                 
@@ -114,6 +116,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 this.fRM_Reporte.setVisible(true);
                 
             break;
+            //------------------------------------------------------------------
             
             case "Facturas":
                 
@@ -122,6 +125,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 this.fRM_Reporte.setVisible(true);
                 
             break;
+            //------------------------------------------------------------------
             
             case "Actualizar Fact":
                 
@@ -132,7 +136,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 }
                 
             break;
-            
+            //------------------------------------------------------------------
             
             case "Limpiar Factura":
                 
@@ -141,6 +145,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 this.listaProductos.cierreDeCaja();
                 
             break;
+            //------------------------------------------------------------------
             
             case "Editar Factura":
                 
@@ -153,6 +158,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 }
                 
             break;
+            //------------------------------------------------------------------
             
             case "Cerrar":
                 
@@ -160,11 +166,14 @@ public class ManejadorCaja implements ActionListener, MouseListener{
                 this.listaProductos.cierreDeCaja();
                 
             break;
+            //------------------------------------------------------------------
             
-        }
+        }//Fin de Switch
+        //----------------------------------------------------------------------
         
-    }
+    }//Fin ActionEvent
     //--------------------------------------------------------------------------
+    
     //Este controlador sirve para recibir la lista de productos ya editada
     public void setListaEditada (){
         ArrayList <Producto> nuevaLista= new ArrayList<>(this.productosFactura);
@@ -181,7 +190,7 @@ public class ManejadorCaja implements ActionListener, MouseListener{
         this.panelFactura.setTotal(this.listaProductos.getTotal(productosFactura));
 
     }
-    
+    //--------------------------------------------------------------------------
     
     //Metodo para generar y verificar un numero random
     public int generarID (){
@@ -218,7 +227,8 @@ public class ManejadorCaja implements ActionListener, MouseListener{
         this.fRM_Reporte.dispose();
         
     }
-
+    //--------------------------------------------------------------------------
+    
     @Override
     public void mousePressed(MouseEvent e) {
         
@@ -239,5 +249,4 @@ public class ManejadorCaja implements ActionListener, MouseListener{
         
     }
     //--------------------------------------------------------------------------
-    
-}
+}//Fin de clase//---------------------------------------------------------------

@@ -19,25 +19,26 @@ public class FRM_Caja extends javax.swing.JFrame {
     public FRM_Caja() {
         initComponents();
     }
+    //--------------------------------------------------------------------------
     
     public static void getMensaje (String mensaje){
         
-        JOptionPane.showMessageDialog(null, mensaje);
-        
+        JOptionPane.showMessageDialog(null, mensaje);    
     }
-    
-    public void setEscuchadores (ActionListener manejador){
-        
-        this.panelDatosFactura1.escuchador(manejador);
-        
-    }
+    //--------------------------------------------------------------------------
     
     public PanelDatosCaja getPanel (){
         
-        return panelDatosFactura1;
-        
+        return panelDatosFactura1;    
     }
-
+    //--------------------------------------------------------------------------
+    
+    //ActionListener de los botones
+    public void setEscuchadores (ActionListener manejador){
+        
+        this.panelDatosFactura1.escuchador(manejador);    
+    }
+    //--------------------------------------------------------------------------
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

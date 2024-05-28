@@ -148,5 +148,4 @@ public class ManejadorMenu implements ActionListener{
         return true;
     }//Fin verificar
     //--------------------------------------------------------------------------
-    
-}//Fin de clase
+}//Fin de clase//---------------------------------------------------------------
