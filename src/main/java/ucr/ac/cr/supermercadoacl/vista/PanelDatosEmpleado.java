@@ -213,6 +213,19 @@ public class PanelDatosEmpleado extends javax.swing.JPanel {
                 throw new NullPointerException("Hay espacios por rellenar");
                 
             }
+            
+            //Try-Catch para verificar si hay caracteres no validos
+            try {
+                
+                Double.parseDouble(this.jtCedula.getText()); 
+                Double.parseDouble(this.jtEdad.getText());
+                
+            } catch (NumberFormatException e) {
+            
+                JOptionPane.showMessageDialog(null, 
+                    "Error: Digite un valor numerico en los campos correspondientes");
+                return true;
+            }
                 
         } catch (NullPointerException e) {
 

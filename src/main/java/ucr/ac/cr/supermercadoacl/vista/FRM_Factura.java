@@ -122,6 +122,17 @@ public class FRM_Factura extends javax.swing.JFrame{
                 throw new NullPointerException("Hay espacios por rellenar");
                 
             }
+            
+            try {
+                
+                Double.parseDouble(this.jtCantidad.getText()); 
+                
+            } catch (NumberFormatException e) {
+            
+                JOptionPane.showMessageDialog(null, 
+                    "Error: Digite un valor numerico en los campos correspondientes");
+                return true;
+            }
                 
         } catch (NullPointerException e) {
 

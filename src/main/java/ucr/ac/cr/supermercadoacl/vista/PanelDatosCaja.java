@@ -252,6 +252,7 @@ public class PanelDatosCaja extends javax.swing.JPanel {
             } else {
                 return "La cantidad debe ser un número positivo";
             }
+            
         } catch (NumberFormatException e) {
             return "Digite una numeración correcta";
         }

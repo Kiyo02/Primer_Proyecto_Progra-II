@@ -265,14 +265,29 @@ public class PanelDatosProducto extends javax.swing.JPanel {
                 throw new NullPointerException("Hay espacios por rellenar");
                 
             }
+            
+            //Try-Catch para verificar si hay caracteres no validos
+            try {
+                
+                Integer.parseInt(this.jtExistencias.getText()); 
+                Integer.parseInt(this.jtCantLimite.getText());
+                Double.parseDouble(this.jtPrecioVent.getText()); 
+                Double.parseDouble(this.jtPrecioComp.getText());
+                
+                
+                
+            } catch (NumberFormatException e) {
+            
+                JOptionPane.showMessageDialog(null, 
+                    "Error: Digite un valor numerico en los campos correspondientes");
+                return true;
+            }
                 
         } catch (NullPointerException e) {
-
-            // Manejar la excepción de campos nulos
+            
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-            // Aquí podrías manejar el error de otra forma, como mostrar un mensaje al usuario
+            
             return true;
-
         }
         
         return false;
